@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Online Library</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+
+<body>
+
+<header class="admin-header">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <h1 class="admin-logo">Online Library</h1>
+
+        <div class="admin-user">
+            <span>Administrador</span>
+            <button class="btn btn-outline-light btn-sm" id="logoutButton">
+                Cerrar sesión
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <nav>
+            <a href="index.html" class="admin-nav-link">
+                Inicio
+            </a>
+
+            <a href="products.html" class="admin-nav-link active">
+                Productos
+            </a>
+
+            <a href="users.html" class="admin-nav-link">
+                Usuarios
+            </a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+
+        <section class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+            <div>
+                <h2 class="mb-1">Productos</h2>
+                <p class="text-muted mb-0">
+                    Gestiona los libros disponibles en la tienda.
+                </p>
+            </div>
+
+            <a href="product-form.html" class="btn btn-primary">
+                Nuevo producto
+            </a>
+        </section>
+
+        <section class="admin-table-container">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="productsTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../../js/bootstrap.bundle.js"></script>
+<script src="../../js/admin.js"></script>
+<script src="../../js/admin-products.js"></script>
+
+</body>
+</html>
