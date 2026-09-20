@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de usuario | Online Library</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+
+<body>
+
+<header class="admin-header">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <h1 class="admin-logo">Online Library</h1>
+
+        <div class="admin-user">
+            <span>Administrador</span>
+            <button class="btn btn-outline-light btn-sm" id="logoutButton">
+                Cerrar sesión
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <nav>
+            <a href="index.html" class="admin-nav-link">
+                Inicio
+            </a>
+
+            <a href="products.html" class="admin-nav-link">
+                Productos
+            </a>
+
+            <a href="users.html" class="admin-nav-link active">
+                Usuarios
+            </a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+
+        <section class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+            <div>
+                <h2 class="mb-1" id="userFormTitle">Nuevo usuario</h2>
+                <p class="text-muted mb-0" id="userFormSubtitle">
+                    Ingresa la información del nuevo usuario.
+                </p>
+            </div>
+
+            <a href="users.html" class="btn btn-outline-secondary">
+                Volver
+            </a>
+        </section>
+
+        <section class="admin-form-card">
+
+            <form id="userForm" novalidate>
+
+                <div class="row g-4">
+
+                    <div class="col-12 col-md-6">
+                        <label for="userRunInput" class="form-label">RUN</label>
+                        <input type="text" class="form-control" id="userRunInput" maxlength="9">
+                        <div class="invalid-feedback" id="userRunError"></div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="userNameInput" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="userNameInput" maxlength="50">
+                        <div class="invalid-feedback" id="userNameError"></div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="userLastNameInput" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="userLastNameInput" maxlength="100">
+                        <div class="invalid-feedback" id="userLastNameError"></div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="userEmailInput" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="userEmailInput" maxlength="100">
+                        <div class="invalid-feedback" id="userEmailError"></div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="userBirthDateInput" class="form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="userBirthDateInput">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="userTypeInput" class="form-label">Tipo de usuario</label>
+
+                        <select class="form-select" id="userTypeInput">
+                            <option value="">Seleccione un tipo</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Cliente">Cliente</option>
+                            <option value="Vendedor">Vendedor</option>
+                        </select>
+
+                        <div class="invalid-feedback" id="userTypeError"></div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="userRegionInput" class="form-label">Región</label>
+
+                        <select class="form-select" id="userRegionInput">
+                            <option value="">Seleccione una región</option>
+                        </select>
+
+                        <div class="invalid-feedback" id="userRegionError"></div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="userCommuneInput" class="form-label">Comuna</label>
+
+                        <select class="form-select" id="userCommuneInput">
+                            <option value="">Seleccione una comuna</option>
+                        </select>
+
+                        <div class="invalid-feedback" id="userCommuneError"></div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="userAddressInput" class="form-label">Dirección</label>
+
+                        <textarea
+                                class="form-control"
+                                id="userAddressInput"
+                                rows="3"
+                                maxlength="300"
+                        ></textarea>
+
+                        <div class="invalid-feedback" id="userAddressError"></div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="d-flex justify-content-end gap-2 flex-wrap">
+
+                            <a href="users.html" class="btn btn-outline-secondary">
+                                Cancelar
+                            </a>
+
+                            <button type="submit" class="btn btn-primary" id="saveUserButton">
+                                Guardar usuario
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../../js/bootstrap.bundle.js"></script>
+<script src="../../js/admin.js"></script>
+<script src="../../js/admin-users.js"></script>
+
+</body>
+</html>
