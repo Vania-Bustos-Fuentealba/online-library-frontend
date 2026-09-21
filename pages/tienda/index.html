@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Online Library</title>
+    <link rel="stylesheet" href="../../assets/css/tienda.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <a href="index.html" class="logo">
+        <span>📚</span> Online Library
+    </a>
+
+    <nav aria-label="Menú principal">
+        <ul class="menu-principal" style="list-style:none;margin:0;padding:0;">
+            <li><a href="index.html" class="activo">Home</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <a href="carrito.html" class="enlace-carrito">
+        🛒 Carrito <span id="contador-carrito">0</span>
+    </a>
+
+</header>
+
+<div class="accesos-usuario">
+    <a href="login.html">Iniciar sesión</a>
+    <a href="registro.html">Registrar usuario</a>
+</div>
+
+<main>
+
+    <section class="hero">
+
+        <div class="hero-texto">
+            <h2>Tu próxima historia empieza aquí</h2>
+            <p>
+                Online Library es una librería digital chilena con títulos de
+                fantasía, clásicos y narrativa contemporánea. Compra en línea,
+                recibe en todo Chile y arma tu biblioteca personal.
+            </p>
+            <a href="productos.html" class="boton">Ver productos</a>
+        </div>
+
+        <div class="hero-imagen">
+            <img src="../../assets/img/una_corte_de_rosas_y_espinas.webp"
+                 alt="Libros destacados de Online Library">
+        </div>
+
+    </section>
+
+    <section class="seccion">
+        <h2>Libros destacados</h2>
+        <p class="subtitulo-seccion">Los títulos más pedidos de este mes</p>
+
+        <div class="grilla-productos" id="destacados"></div>
+    </section>
+
+
+</main>
+
+<footer class="site-footer">
+
+    <div class="footer-columnas">
+
+        <div>
+            <h4>Online Library</h4>
+            <p>Librería online chilena. Envíos a todo el país.</p>
+        </div>
+
+        <div>
+            <h4>Categorías</h4>
+            <ul>
+                <li><a href="productos.html">Fantasía</a></li>
+                <li><a href="productos.html">Clásicos</a></li>
+                <li><a href="productos.html">Narrativa</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>Ayuda</h4>
+            <ul>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-base">
+        <p>© 2026 Online Library — todos los derechos reservados.</p>
+    </div>
+
+</footer>
+
+<script src="../../assets/js/productos.js"></script>
+<script src="../../assets/js/carrito.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Online Library</title>
+    <link rel="stylesheet" href="../../assets/css/tienda.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <a href="index.html" class="logo"><span>📚</span> Online Library</a>
+
+    <nav aria-label="Menú principal">
+        <ul class="menu-principal" style="list-style:none;margin:0;padding:0;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="productos.html" class="activo">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <a href="carrito.html" class="enlace-carrito">
+        🛒 Carrito <span id="contador-carrito">0</span>
+    </a>
+
+</header>
+
+<main>
+
+    <section class="seccion">
+
+        <h2>Catálogo de libros</h2>
+        <p class="subtitulo-seccion">Explora todos los títulos disponibles</p>
+
+        <div class="barra-filtros">
+
+            <div>
+                <label for="filtro-categoria">Filtrar por categoría:</label>
+                <select id="filtro-categoria">
+                    <option value="todas">Todas las categorías</option>
+                </select>
+            </div>
+
+            <span id="contador-resultados"></span>
+
+        </div>
+
+        <div class="grilla-productos" id="catalogo"></div>
+
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-columnas">
+        <div>
+            <h4>Online Library</h4>
+            <p>Librería online chilena. Envíos a todo el país.</p>
+        </div>
+        <div>
+            <h4>Ayuda</h4>
+            <ul>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-base">
+        <p>© 2026 Online Library — todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script src="../../assets/js/productos.js"></script>
+<script src="../../assets/js/carrito.js"></script>
+
+</body>
+</html>

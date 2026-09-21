@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del producto - Online Library</title>
+    <link rel="stylesheet" href="../../assets/css/tienda.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <a href="index.html" class="logo"><span>📚</span> Online Library</a>
+
+    <nav aria-label="Menú principal">
+        <ul class="menu-principal" style="list-style:none;margin:0;padding:0;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="productos.html" class="activo">Productos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <a href="carrito.html" class="enlace-carrito">
+        🛒 Carrito <span id="contador-carrito">0</span>
+    </a>
+
+</header>
+
+<nav class="migas" aria-label="Ruta de navegación">
+    <a href="index.html">Home</a> ›
+    <a href="productos.html">Productos</a> ›
+    <span id="migas-nombre">Detalle</span>
+</nav>
+
+<main>
+
+    <section class="detalle-producto" id="detalle"></section>
+
+    <section class="seccion">
+        <h2>Libros relacionados</h2>
+        <p class="subtitulo-seccion">Otros títulos de la misma categoría</p>
+        <div class="grilla-productos" id="relacionados"></div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-columnas">
+        <div>
+            <h4>Online Library</h4>
+            <p>Librería online chilena. Envíos a todo el país.</p>
+        </div>
+        <div>
+            <h4>Ayuda</h4>
+            <ul>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="productos.html">Catálogo</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-base">
+        <p>© 2026 Online Library — Proyecto DSY1104, Duoc UC.</p>
+    </div>
+</footer>
+
+<script src="../../assets/js/productos.js"></script>
+<script src="../../assets/js/carrito.js"></script>
+
+</body>
+</html>
