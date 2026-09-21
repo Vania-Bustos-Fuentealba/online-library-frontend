@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar sesión | Online Library</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/user.css">
+</head>
+
+<body>
+
+<header class="user-header">
+
+    <nav class="navbar navbar-expand-lg">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="login.html">
+                Online Library
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#userNavbar"
+                aria-controls="userNavbar"
+                aria-expanded="false"
+                aria-label="Abrir navegación"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="userNavbar">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            Nosotros
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">
+                            Blog
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            Contacto
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="login.html">
+                            Iniciar sesión
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">
+                            Registrarse
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<main class="user-main">
+
+    <section class="user-section">
+
+        <div class="container">
+
+            <div class="text-center mb-4">
+
+                <h1 class="user-section-title">
+                    Iniciar sesión
+                </h1>
+
+                <p class="user-section-description">
+                    Ingresa a tu cuenta de Online Library.
+                </p>
+
+            </div>
+
+
+            <div class="user-form-card">
+
+                <form id="loginForm" novalidate>
+
+                    <!-- CORREO -->
+
+                    <div class="mb-3">
+
+                        <label for="loginEmail" class="form-label">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="loginEmail"
+                            name="email"
+                            maxlength="100"
+                            placeholder="ejemplo@gmail.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="loginEmailError">
+                            Ingresa un correo electrónico válido.
+                        </div>
+
+                        <div class="form-text">
+                            Se permiten correos @duoc.cl, @profesor.duoc.cl y @gmail.com.
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTRASEÑA -->
+
+                    <div class="mb-4">
+
+                        <label for="loginPassword" class="form-label">
+                            Contraseña
+                        </label>
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="loginPassword"
+                            name="password"
+                            minlength="4"
+                            maxlength="10"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="loginPasswordError">
+                            La contraseña debe tener entre 4 y 10 caracteres.
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOTÓN -->
+
+                    <div class="d-grid">
+
+                        <button
+                            type="submit"
+                            class="btn user-btn"
+                        >
+                            Iniciar sesión
+                        </button>
+
+                    </div>
+
+
+                    <p class="text-center mt-4 mb-0">
+
+                        ¿No tienes una cuenta?
+
+                        <a href="register.html">
+                            Regístrate aquí
+                        </a>
+
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="user-footer">
+
+    <div class="container text-center">
+
+        <h2>
+            Online Library
+        </h2>
+
+        <p>
+            Tu biblioteca online.
+        </p>
+
+        <p>
+            <a href="about.html">Nosotros</a>
+            |
+            <a href="blog.html">Blog</a>
+            |
+            <a href="contact.html">Contacto</a>
+        </p>
+
+        <p>
+            &copy; 2026 Online Library. Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="../../js/bootstrap.bundle.js"></script>
+<script src="../../js/user.js"></script>
+
+</body>
+
+</html>

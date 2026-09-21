@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contacto | Online Library</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/user.css">
+</head>
+
+<body>
+
+<header class="user-header">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+            <a class="navbar-brand" href="about.html">
+                Online Library
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#userNavbar"
+                aria-controls="userNavbar"
+                aria-expanded="false"
+                aria-label="Mostrar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="userNavbar">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            Nosotros
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">
+                            Blog
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">
+                            Contacto
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">
+                            Iniciar sesión
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">
+                            Registrarse
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+
+<main class="user-main">
+
+    <section class="user-section">
+
+        <div class="container">
+
+            <div class="text-center mb-4">
+                <h1 class="user-section-title">
+                    Contáctanos
+                </h1>
+
+                <p class="user-section-description">
+                    Si tienes alguna consulta, comentario o sugerencia,
+                    puedes comunicarte con nosotros mediante el siguiente formulario.
+                </p>
+            </div>
+
+
+            <div class="user-form-card">
+
+                <form id="contactForm" novalidate>
+
+                    <!-- Nombre -->
+                    <div class="mb-3">
+
+                        <label for="contactName" class="form-label">
+                            Nombre completo
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="contactName"
+                            name="contactName"
+                            maxlength="100"
+                            placeholder="Ingresa tu nombre completo">
+
+                        <div class="invalid-feedback">
+                            Ingresa tu nombre completo.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Correo -->
+                    <div class="mb-3">
+
+                        <label for="contactEmail" class="form-label">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="contactEmail"
+                            name="contactEmail"
+                            maxlength="100"
+                            placeholder="ejemplo@duoc.cl">
+
+                        <div class="invalid-feedback">
+                            Ingresa un correo válido.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Comentario -->
+                    <div class="mb-3">
+
+                        <label for="contactMessage" class="form-label">
+                            Comentario
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="contactMessage"
+                            name="contactMessage"
+                            maxlength="500"
+                            placeholder="Escribe tu comentario..."
+                            rows="6"></textarea>
+
+                        <div class="invalid-feedback">
+                            El comentario debe tener al menos 10 caracteres.
+                        </div>
+
+                    </div>
+
+
+                    <div class="text-center mt-4">
+
+                        <button
+                            type="submit"
+                            class="btn user-btn">
+                            Enviar mensaje
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="user-footer">
+
+    <div class="container text-center">
+
+        <h2>Online Library</h2>
+
+        <p>
+            Biblioteca online para descubrir y compartir contenido.
+        </p>
+
+        <p>
+            &copy; 2026 Online Library
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="../../js/bootstrap.bundle.js"></script>
+<script src="../../js/user.js"></script>
+
+</body>
+</html>

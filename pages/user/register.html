@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro | Online Library</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/user.css">
+</head>
+
+<body>
+
+<header class="user-header">
+
+    <nav class="navbar navbar-expand-lg">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="login.html">
+                Online Library
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#userNavbar"
+                aria-controls="userNavbar"
+                aria-expanded="false"
+                aria-label="Abrir navegación"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="userNavbar">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            Nosotros
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">
+                            Blog
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            Contacto
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">
+                            Iniciar sesión
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="register.html">
+                            Registrarse
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<main class="user-main">
+
+    <section class="user-section">
+
+        <div class="container">
+
+            <div class="text-center mb-4">
+
+                <h1 class="user-section-title">
+                    Crear una cuenta
+                </h1>
+
+                <p class="user-section-description">
+                    Regístrate en Online Library para acceder a nuestra plataforma.
+                </p>
+
+            </div>
+
+
+            <div class="user-form-card">
+
+                <form id="registerForm" novalidate>
+
+                    <!-- RUN -->
+
+                    <div class="mb-3">
+
+                        <label for="registerRun" class="form-label">
+                            RUN
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="registerRun"
+                            name="run"
+                            minlength="7"
+                            maxlength="9"
+                            placeholder="Ej: 19011022K"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="registerRunError">
+                            Ingresa un RUN válido, sin puntos ni guion.
+                        </div>
+
+                        <div class="form-text">
+                            Ingresa tu RUN sin puntos ni guion.
+                        </div>
+
+                    </div>
+
+
+                    <!-- NOMBRE -->
+
+                    <div class="mb-3">
+
+                        <label for="registerName" class="form-label">
+                            Nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="registerName"
+                            name="name"
+                            maxlength="50"
+                            autocomplete="name"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="registerNameError">
+                            Ingresa tu nombre.
+                        </div>
+
+                    </div>
+
+
+                    <!-- APELLIDOS -->
+
+                    <div class="mb-3">
+
+                        <label for="registerLastName" class="form-label">
+                            Apellidos
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="registerLastName"
+                            name="lastName"
+                            maxlength="100"
+                            autocomplete="family-name"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="registerLastNameError">
+                            Ingresa tus apellidos.
+                        </div>
+
+                    </div>
+
+
+                    <!-- CORREO -->
+
+                    <div class="mb-3">
+
+                        <label for="registerEmail" class="form-label">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="registerEmail"
+                            name="email"
+                            maxlength="100"
+                            placeholder="ejemplo@gmail.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="registerEmailError">
+                            Ingresa un correo electrónico válido.
+                        </div>
+
+                        <div class="form-text">
+                            Se permiten correos @duoc.cl, @profesor.duoc.cl y @gmail.com.
+                        </div>
+
+                    </div>
+
+
+                    <!-- FECHA DE NACIMIENTO -->
+
+                    <div class="mb-3">
+
+                        <label for="registerBirthDate" class="form-label">
+                            Fecha de nacimiento
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="registerBirthDate"
+                            name="birthDate"
+                            autocomplete="bday"
+                        >
+
+                        <div class="invalid-feedback" id="registerBirthDateError">
+                            Ingresa una fecha válida.
+                        </div>
+
+                    </div>
+
+
+                    <!-- REGIÓN -->
+
+                    <div class="mb-3">
+
+                        <label for="registerRegion" class="form-label">
+                            Región
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="registerRegion"
+                            name="region"
+                            required
+                        >
+
+                            <option value="">
+                                Selecciona una región
+                            </option>
+
+                        </select>
+
+                        <div class="invalid-feedback" id="registerRegionError">
+                            Selecciona una región.
+                        </div>
+
+                    </div>
+
+
+                    <!-- COMUNA -->
+
+                    <div class="mb-3">
+
+                        <label for="registerCommune" class="form-label">
+                            Comuna
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="registerCommune"
+                            name="commune"
+                            required
+                            disabled
+                        >
+
+                            <option value="">
+                                Selecciona primero una región
+                            </option>
+
+                        </select>
+
+                        <div class="invalid-feedback" id="registerCommuneError">
+                            Selecciona una comuna.
+                        </div>
+
+                    </div>
+
+
+                    <!-- DIRECCIÓN -->
+
+                    <div class="mb-3">
+
+                        <label for="registerAddress" class="form-label">
+                            Dirección
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="registerAddress"
+                            name="address"
+                            maxlength="300"
+                            autocomplete="street-address"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="registerAddressError">
+                            Ingresa tu dirección.
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTRASEÑA -->
+
+                    <div class="mb-3">
+
+                        <label for="registerPassword" class="form-label">
+                            Contraseña
+                        </label>
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="registerPassword"
+                            name="password"
+                            minlength="4"
+                            maxlength="10"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="registerPasswordError">
+                            La contraseña debe tener entre 4 y 10 caracteres.
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRMAR CONTRASEÑA -->
+
+                    <div class="mb-4">
+
+                        <label for="registerPasswordConfirm" class="form-label">
+                            Confirmar contraseña
+                        </label>
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="registerPasswordConfirm"
+                            name="passwordConfirm"
+                            minlength="4"
+                            maxlength="10"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <div class="invalid-feedback" id="registerPasswordConfirmError">
+                            Las contraseñas deben coincidir.
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOTÓN -->
+
+                    <div class="d-grid">
+
+                        <button
+                            type="submit"
+                            class="btn user-btn"
+                        >
+                            Crear cuenta
+                        </button>
+
+                    </div>
+
+
+                    <p class="text-center mt-4 mb-0">
+
+                        ¿Ya tienes una cuenta?
+
+                        <a href="login.html">
+                            Inicia sesión
+                        </a>
+
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="user-footer">
+
+    <div class="container text-center">
+
+        <h2>
+            Online Library
+        </h2>
+
+        <p>
+            Tu biblioteca online.
+        </p>
+
+        <p>
+            <a href="about.html">Nosotros</a>
+            |
+            <a href="blog.html">Blog</a>
+            |
+            <a href="contact.html">Contacto</a>
+        </p>
+
+        <p>
+            &copy; 2026 Online Library. Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="../../js/bootstrap.bundle.js"></script>
+<script src="../../js/user.js"></script>
+
+</body>
+
+</html>
