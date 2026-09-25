@@ -51,7 +51,7 @@ const PRODUCTOS = [
         categoria: "Fantasía",
         precio: 16990,
         stock: 20,
-        imagen: "../../assets/img/una_corte_de_rosas_y_espinas.webp",
+        imagen: "../../assets/img/acotar-1.jpg",
         descripcion: "Feyre mata a un lobo en el bosque y es arrastrada a las tierras de las hadas como castigo. Allí descubre que su captor esconde una maldición que amenaza a los dos mundos."
     }
 ];
