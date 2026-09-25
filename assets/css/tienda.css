@@ -131,8 +131,9 @@ h1, h2, h3 { color: var(--morado); }
 .hero-imagen img {
     width: 100%;
     height: 300px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 12px;
+    background-color: var(--lila-claro);
 }
 
 /* =========================================================
