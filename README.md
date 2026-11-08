@@ -32,6 +32,16 @@ Desarrollar la interfaz web de una tienda de libros online e integrarla posterio
 - Creación y edición de usuarios
 - Consulta de detalles
 
+### Panel administrativo en React
+
+La aplicación React se ejecuta desde `user-front-react`. El panel está disponible en `/admin` después de iniciar sesión con una cuenta de rol administrador. Incluye resumen, búsqueda de productos y usuarios, alta, edición y eliminación. Los productos se guardan en LocalStorage; la gestión de usuarios reutiliza el almacenamiento y las validaciones de registro de la aplicación.
+
+> El almacenamiento local sirve para la demostración frontend. La autorización real de administradores y la persistencia compartida requieren el backend.
+
+Para iniciar la aplicación React, entra a `user-front-react`, instala las dependencias con `npm install` y ejecuta `npm run dev`. Inicia sesión con la cuenta semilla `admin@duoc.cl` y contraseña `admin` para abrir el panel.
+
+Las pruebas unitarias y el resumen de cobertura están documentados en [`user-front-react/TESTING.md`](user-front-react/TESTING.md).
+
 ## Tecnologías utilizadas
 
 - HTML5
