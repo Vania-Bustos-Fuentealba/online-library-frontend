@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { validarEmail, validarPassword } from '../utils/validaciones'
 import { autenticar, iniciarSesion } from '../data/usuarios'
 
 function Login() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const [valores, setValores] = useState({ email: '', password: '' })
   const [intento, setIntento] = useState(false)
@@ -48,8 +49,11 @@ function Login() {
     }
 
     iniciarSesion(usuario)
+    if (usuario.rol === 'admin') {
+      navigate('/admin')
+      return
+    }
     setExito(`¡Bienvenido/a, ${usuario.nombre}!`)
-    // Cuando exista la página de inicio: navigate('/') con useNavigate
   }
 
   return (

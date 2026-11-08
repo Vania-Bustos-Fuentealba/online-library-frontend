@@ -6,6 +6,12 @@ import DetalleBlog from './pages/DetalleBlog'
 import Login from './pages/Login'
 import Registro from './pages/Registro'
 import Contacto from './pages/Contacto'
+import AdminLayout from './admin/AdminLayout'
+import AdminDashboard from './admin/AdminDashboard'
+import AdminProducts from './admin/AdminProducts'
+import AdminProductForm from './admin/AdminProductForm'
+import AdminUsers from './admin/AdminUsers'
+import AdminUserForm from './admin/AdminUserForm'
 
 function App() {
   return (
@@ -18,6 +24,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/contacto" element={<Contacto />} />
+        </Route>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="productos" element={<AdminProducts />} />
+          <Route path="productos/nuevo" element={<AdminProductForm />} />
+          <Route path="productos/:id/editar" element={<AdminProductForm />} />
+          <Route path="usuarios" element={<AdminUsers />} />
+          <Route path="usuarios/nuevo" element={<AdminUserForm />} />
+          <Route path="usuarios/:id/editar" element={<AdminUserForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
