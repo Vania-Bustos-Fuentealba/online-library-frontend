@@ -1,17 +1,23 @@
-import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
+    globals: true,
     setupFiles: './src/test/setup.js',
+    css: false,
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],
-      include: ['src/admin/**/*.{js,jsx}', 'src/data/usuarios.js', 'src/utils/validaciones.js'],
-      exclude: ['**/*.test.{js,jsx}'],
-    },
-  },
+      include: [
+        'src/pages/Login.jsx',
+        'src/pages/Registro.jsx',
+        'src/pages/Contacto.jsx',
+        'src/components/CampoFormulario.jsx',
+        'src/utils/**'
+      ]
+    }
+  }
 })
