@@ -11,7 +11,7 @@ const productos = [
     precio: 19990,
     stock: 10,
     stockCritico: 5,
-    imagen: '/img/Alas_de_sangre.webp',
+    imagen: '/books/Alas_de_sangre.webp',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const productos = [
     precio: 14990,
     stock: 8,
     stockCritico: 5,
-    imagen: '/img/crimen_y_castigo.webp',
+    imagen: '/books/crimen_y_castigo.webp',
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const productos = [
     precio: 17990,
     stock: 6,
     stockCritico: 5,
-    imagen: '/img/El_Buzon_De_Las_Impuras.webp',
+    imagen: '/books/El_Buzon_De_Las_Impuras.webp',
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ const productos = [
     precio: 15990,
     stock: 4,
     stockCritico: 5,
-    imagen: '/img/Mientras_Yubooh_Duerme.webp',
+    imagen: '/books/Mientras_Yubooh_Duerme.webp',
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ const productos = [
     precio: 18990,
     stock: 0,
     stockCritico: 5,
-    imagen: '/img/una_corte_de_rosas_y_espinas.webp',
+    imagen: '/books/acotar-1.jpg',
   },
 ]
 
