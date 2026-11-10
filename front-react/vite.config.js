@@ -15,6 +15,8 @@ export default defineConfig({
         'src/pages/Login.jsx',
         'src/pages/Registro.jsx',
         'src/pages/Contacto.jsx',
+        'src/pages/Checkout.jsx',
+        'src/pages/Carrito.jsx',
         'src/components/CampoFormulario.jsx',
         'src/utils/**'
       ]

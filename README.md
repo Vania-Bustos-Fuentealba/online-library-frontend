@@ -2,7 +2,7 @@
 
 Frontend desarrollado para el proyecto de **Fullstack II**, basado en la continuidad del sistema creado previamente en **Fullstack I**.
 
-El proyecto corresponde a una biblioteca online que contempla una experiencia diferenciada para clientes y administradores, utilizando HTML, CSS, JavaScript y Bootstrap para la construcción de las distintas vistas.
+El proyecto corresponde a una biblioteca online que contempla una experiencia diferenciada para clientes y administradores. La entrega anterior se construyó con HTML, CSS, JavaScript y Bootstrap; en la Evaluación Parcial 2 se migró a **React** (carpeta `front-react`).
 
 ## Objetivo
 
@@ -17,7 +17,8 @@ Desarrollar la interfaz web de una tienda de libros online e integrarla posterio
 - Inicio de sesión
 - Catálogo de productos
 - Detalle de productos
-- Carrito de compras
+- Carrito de compras con cupones
+- Checkout con validación de datos de despacho
 - Página Nosotros
 - Blog
 - Detalle de publicaciones
@@ -30,25 +31,26 @@ Desarrollar la interfaz web de una tienda de libros online e integrarla posterio
 - Creación y edición de productos
 - Gestión de usuarios
 - Creación y edición de usuarios
-- Consulta de detalles
 
-### Panel administrativo en React
+## Aplicación React
 
-La aplicación React se ejecuta desde `user-front-react`. El panel está disponible en `/admin` después de iniciar sesión con una cuenta de rol administrador. Incluye resumen, búsqueda de productos y usuarios, alta, edición y eliminación. Los productos se guardan en LocalStorage; la gestión de usuarios reutiliza el almacenamiento y las validaciones de registro de la aplicación.
+La aplicación React se ejecuta desde `front-react`. Entra a esa carpeta, instala las dependencias con `npm install` y ejecuta `npm run dev`.
+
+El panel administrativo está disponible en `/admin` después de iniciar sesión con una cuenta de rol administrador (cuenta semilla `admin@duoc.cl`, contraseña `admin`). Los productos y el carrito se guardan en LocalStorage; la gestión de usuarios reutiliza el almacenamiento y las validaciones de registro.
 
 > El almacenamiento local sirve para la demostración frontend. La autorización real de administradores y la persistencia compartida requieren el backend.
 
-Para iniciar la aplicación React, entra a `user-front-react`, instala las dependencias con `npm install` y ejecuta `npm run dev`. Inicia sesión con la cuenta semilla `admin@duoc.cl` y contraseña `admin` para abrir el panel.
-
-Las pruebas unitarias y el resumen de cobertura están documentados en [`user-front-react/TESTING.md`](user-front-react/TESTING.md).
+Más detalles en [`front-react/README.md`](front-react/README.md). Las pruebas unitarias y el resumen de cobertura están en [`front-react/TESTING.md`](front-react/TESTING.md).
 
 ## Tecnologías utilizadas
 
-- HTML5
-- CSS3
-- JavaScript
+- React y React Router
+- Vite
 - Bootstrap
+- JavaScript
 - LocalStorage
+- Vitest y React Testing Library
+- HTML5 y CSS3 (versión inicial)
 - Git y GitHub
 
 ## Integración con backend
@@ -74,12 +76,13 @@ La comunicación general del sistema sigue la estructura:
 
 Frontend → API Gateway → Microservicios
 
-## Estructura inicial
+## Estructura del repositorio
 
 ```text
 online-library-frontend/
-├── index.html
-├── pages/
-├── assets/
-├── css/
-└── js/
+├── front-react/   Aplicación React (versión actual)
+├── pages/         Plantilla HTML inicial
+├── assets/        Recursos de la plantilla HTML
+├── css/           Estilos de la plantilla HTML
+└── js/            Scripts de la plantilla HTML
+```

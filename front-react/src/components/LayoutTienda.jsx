@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 
-function Layout() {
+function LayoutTienda() {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ function Layout() {
   )
 }
 
-export default Layout
+export default LayoutTienda

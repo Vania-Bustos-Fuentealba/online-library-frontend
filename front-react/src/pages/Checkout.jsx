@@ -9,7 +9,7 @@ import {
   validarComuna,
   validarPago,
   validarFormularioCompra,
-} from '../utils/validaciones'
+} from '../utils/validacionesCompra'
 
 const DATOS_INICIALES = { nombre: '', correo: '', direccion: '', comuna: '', pago: '' }
 
