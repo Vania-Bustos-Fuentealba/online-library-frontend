@@ -49,6 +49,7 @@ function Login() {
     try {
       const datos = await solicitar('/auth/login', {
         method: 'POST',
+        autenticar: false,
         body: {
           email: valores.email.trim().toLowerCase(),
           password: valores.password,

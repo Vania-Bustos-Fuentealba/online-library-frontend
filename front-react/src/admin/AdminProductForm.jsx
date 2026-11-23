@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { solicitar } from '../services/api'
+import { validarLibro } from './adminApi'
 
 const emptyProduct = {
   name: '',
@@ -9,8 +10,7 @@ const emptyProduct = {
   stock: '',
 }
 
-function AdminProductForm() {
-  const { id } = useParams()
+function ProductEditor({ id }) {
   const navigate = useNavigate()
   const isEditing = Boolean(id)
 
@@ -24,11 +24,6 @@ function AdminProductForm() {
   useEffect(() => {
     let active = true
 
-    setForm({ ...emptyProduct })
-    setError('')
-    setLoadError('')
-    setLoading(Boolean(id))
-
     if (!id) {
       return () => {
         active = false
@@ -41,9 +36,7 @@ function AdminProductForm() {
             `/books/${encodeURIComponent(id)}`
         )
 
-        if (!book || book.id == null) {
-          throw new Error('El servidor no devolvió un libro válido.')
-        }
+        validarLibro(book)
 
         if (active) {
           setForm({
@@ -89,6 +82,7 @@ function AdminProductForm() {
 
     if (loading || saving || loadError) return
 
+    // Validaciones compatibles con BookRequestDTO: precio positivo y stock entero.
     const title = form.name.trim()
     const author = form.author.trim()
     const price = Number(form.price)
@@ -133,6 +127,7 @@ function AdminProductForm() {
           ? `/books/${encodeURIComponent(id)}`
           : '/books'
 
+      // Un único envío guarda los campos reales del libro mediante el Gateway.
       await solicitar(route, {
         method: isEditing ? 'PUT' : 'POST',
         body: {
@@ -143,7 +138,7 @@ function AdminProductForm() {
         },
       })
 
-      navigate('/admin/productos')
+      navigate('/admin/productos', { replace: true, state: { success: isEditing ? 'Producto actualizado correctamente.' : 'Producto creado correctamente.' } })
     } catch (err) {
       setError(
           err.message || 'No se pudo guardar el libro.'
@@ -170,7 +165,11 @@ function AdminProductForm() {
             <button
                 type="button"
                 className="btn btn-outline-danger"
-                onClick={() => setReload((value) => value + 1)}
+                onClick={() => {
+                  setLoadError('')
+                  setLoading(true)
+                  setReload((value) => value + 1)
+                }}
             >
               Reintentar
             </button>
@@ -254,8 +253,8 @@ function AdminProductForm() {
                     type="number"
                     id="price"
                     name="price"
-                    min="1"
-                    step="1"
+                    min="0.01"
+                    step="any"
                     value={form.price}
                     onChange={update}
                     required
@@ -317,4 +316,8 @@ function AdminProductForm() {
   )
 }
 
-export default AdminProductForm
+export default function AdminProductForm() {
+  const { id } = useParams()
+  // Cambiar de libro crea un formulario limpio, sin mostrar datos del anterior.
+  return <ProductEditor key={id ?? 'nuevo'} id={id} />
+}

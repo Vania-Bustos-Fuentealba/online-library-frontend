@@ -63,6 +63,7 @@ function Registro() {
     try {
       await solicitar('/auth/register', {
         method: 'POST',
+        autenticar: false,
         body: {
           name: valores.nombre.trim(),
           email: valores.email.trim().toLowerCase(),

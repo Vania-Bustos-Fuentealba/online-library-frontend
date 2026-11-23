@@ -1,47 +1,49 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, render, screen } from '@testing-library/react'
+import { describe, it, expect, afterEach, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import AdminUsers from './AdminUsers'
-import { obtenerUsuarios } from '../data/usuarios'
-
-describe('Administración de usuarios', () => {
-  beforeEach(() => {
-    localStorage.clear()
+import { mockApi, json, profile } from '../test/apiHelpers'
+afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks() })
+describe('Perfiles reales', () => {
+  it('lista, busca y enlaza detalles sin asumir roles ni identidades de Auth', async () => {
+    mockApi(() => json([profile]))
+    render(<MemoryRouter><AdminUsers /></MemoryRouter>)
+    expect(await screen.findByText(profile.email)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: profile.name })).toHaveAttribute('href', '/admin/usuarios/42')
+    await userEvent.type(screen.getByLabelText('Buscar usuarios'), 'inexistente')
+    expect(screen.getByText('No se encontraron usuarios.')).toBeInTheDocument()
+    expect(screen.queryByText('Administrador')).not.toBeInTheDocument()
+  })
+  it('no confunde errores de red con una lista vacía', async () => {
+    mockApi(() => json({}, 503))
+    render(<MemoryRouter><AdminUsers /></MemoryRouter>)
+    expect(await screen.findByRole('alert')).toHaveTextContent('503')
+    expect(screen.queryByText('No se encontraron usuarios.')).not.toBeInTheDocument()
+  })
+  it('elimina usando el ID de Auth, después de confirmar', async () => {
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false)
+    let deleted = false
+    const fetch = mockApi((url, options) => {
+      if (options.method === 'DELETE') { deleted = true; return json(null, 204) }
+      return json(deleted ? [] : [profile])
+    })
+    render(<MemoryRouter><AdminUsers /></MemoryRouter>)
+    const button = await screen.findByRole('button', { name: /Eliminar Persona/ })
+    await userEvent.click(button)
+    expect(fetch).toHaveBeenCalledTimes(1)
+    confirm.mockReturnValue(true)
+    await userEvent.click(button)
+    expect(await screen.findByText('Cuenta eliminada correctamente.')).toBeInTheDocument()
+    expect(fetch.mock.calls[1][0]).toBe('/api/auth/users/42')
+    expect(await screen.findByText('No se encontraron usuarios.')).toBeInTheDocument()
+  })
+  it('mantiene la cuenta cuando el servidor rechaza borrarla', async () => {
     vi.spyOn(window, 'confirm').mockReturnValue(true)
-  })
-
-  afterEach(() => {
-    cleanup()
-    vi.restoreAllMocks()
-  })
-
-  it('muestra las cuentas existentes sin exponer contraseñas', () => {
+    mockApi((url, options) => options.method === 'DELETE' ? json({ message: 'Cuenta protegida' }, 409) : json([profile]))
     render(<MemoryRouter><AdminUsers /></MemoryRouter>)
-
-    expect(screen.getByText('Admin Online Library')).toBeInTheDocument()
-    expect(screen.getByText('Cliente De Prueba')).toBeInTheDocument()
-    expect(screen.queryByText('1234')).not.toBeInTheDocument()
-  })
-
-  it('elimina una cuenta usando el mismo módulo de datos que registro e inicio de sesión', async () => {
-    const user = userEvent.setup()
-    render(<MemoryRouter><AdminUsers /></MemoryRouter>)
-
-    await user.click(screen.getByRole('button', { name: 'Eliminar Admin Online Library' }))
-
-    expect(obtenerUsuarios()).toHaveLength(1)
-    expect(screen.queryByText('Admin Online Library')).not.toBeInTheDocument()
-  })
-
-  it('conserva la cuenta si se cancela la confirmación', async () => {
-    window.confirm.mockReturnValue(false)
-    const user = userEvent.setup()
-    render(<MemoryRouter><AdminUsers /></MemoryRouter>)
-
-    await user.click(screen.getByRole('button', { name: 'Eliminar Admin Online Library' }))
-
-    expect(obtenerUsuarios()).toHaveLength(2)
-    expect(screen.getByText('Admin Online Library')).toBeInTheDocument()
+    await userEvent.click(await screen.findByRole('button', { name: /Eliminar Persona/ }))
+    expect(await screen.findByRole('alert')).toHaveTextContent('Cuenta protegida')
+    expect(screen.getByText(profile.email)).toBeInTheDocument()
   })
 })

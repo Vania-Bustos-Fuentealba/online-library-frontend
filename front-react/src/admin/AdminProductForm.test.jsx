@@ -1,65 +1,75 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { cleanup, render, screen } from '@testing-library/react'
+import { describe, it, expect, afterEach, vi } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { MemoryRouter, Routes, Route, useLocation } from 'react-router-dom'
 import AdminProductForm from './AdminProductForm'
-import { getProducts } from './adminData'
-
-function renderCreateForm() {
-  return render(
-    <MemoryRouter initialEntries={['/admin/productos/nuevo']}>
-      <Routes>
-        <Route path="/admin/productos/nuevo" element={<AdminProductForm />} />
-        <Route path="/admin/productos" element={<p>Listado de productos</p>} />
-      </Routes>
-    </MemoryRouter>,
-  )
+import AdminProductDetail from './AdminProductDetail'
+import { mockApi, json, book } from '../test/apiHelpers'
+afterEach(() => vi.unstubAllGlobals())
+function Destination() { return <p>{useLocation().state?.success}</p> }
+function show(path = '/admin/productos/nuevo') {
+  render(<MemoryRouter initialEntries={[path]}><Routes>
+    <Route path="/admin/productos/nuevo" element={<AdminProductForm />} />
+    <Route path="/admin/productos/:id/editar" element={<AdminProductForm />} />
+    <Route path="/admin/productos/:id" element={<AdminProductDetail />} />
+    <Route path="/admin/productos" element={<Destination />} />
+  </Routes></MemoryRouter>)
 }
-
-describe('Formulario de productos', () => {
-  beforeEach(() => localStorage.clear())
-  afterEach(cleanup)
-
-  it('valida los campos obligatorios antes de guardar', async () => {
-    const user = userEvent.setup()
-    renderCreateForm()
-
-    await user.click(screen.getByRole('button', { name: 'Crear producto' }))
-
-    expect(screen.getByRole('alert')).toHaveTextContent('Completa los campos')
-    expect(getProducts()).toHaveLength(5)
+function fill(stock = '0', price = '12.5') {
+  for (const [label, value] of [['Título', 'Libro nuevo'], ['Autor', 'Autora real'], ['Precio (CLP)', price], ['Stock', stock]])
+    fireEvent.change(screen.getByLabelText(label), { target: { value } })
+}
+describe('Formulario real de libros', () => {
+  it('envía POST con decimales y stock cero', async () => {
+    const fetch = mockApi(() => json(book, 201))
+    show(); fill()
+    await userEvent.click(screen.getByRole('button', { name: 'Crear producto' }))
+    expect(await screen.findByText('Producto creado correctamente.')).toBeInTheDocument()
+    expect(fetch.mock.calls[0][0]).toBe('/api/books')
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ title: 'Libro nuevo', author: 'Autora real', price: 12.5, stock: 0 })
   })
-
-  it('crea un libro válido y lo persiste en localStorage', async () => {
-    const user = userEvent.setup()
-    renderCreateForm()
-
-    await user.type(screen.getByLabelText('Código'), 'LIB006')
-    await user.type(screen.getByLabelText('Nombre'), 'Libro de prueba')
-    await user.type(screen.getByLabelText('Autor'), 'Autora de prueba')
-    await user.selectOptions(screen.getByLabelText('Categoría'), 'Narrativa')
-    await user.type(screen.getByLabelText('Precio (CLP)'), '10000')
-    await user.type(screen.getByLabelText('Stock'), '4')
-    await user.type(screen.getByLabelText('Stock crítico'), '1')
-    await user.click(screen.getByRole('button', { name: 'Crear producto' }))
-
-    expect(await screen.findByText('Listado de productos')).toBeInTheDocument()
-    expect(getProducts()).toContainEqual(expect.objectContaining({ code: 'LIB006', name: 'Libro de prueba', author: 'Autora de prueba', price: 10000, stock: 4 }))
+  it.each([['-1', '12'], ['1.5', '12'], ['2147483648', '12'], ['1', '0'], ['1', '-10'], ['', '12']])('rechaza stock %s y precio %s inválidos', async (stock, price) => {
+    const fetch = mockApi(() => json(book))
+    show(); fill(stock, price)
+    await userEvent.click(screen.getByRole('button', { name: 'Crear producto' }))
+    expect(screen.getByRole('alert')).toBeInTheDocument()
+    expect(fetch).not.toHaveBeenCalled()
   })
-
-  it('rechaza un código de libro que ya existe', async () => {
-    const user = userEvent.setup()
-    renderCreateForm()
-
-    await user.type(screen.getByLabelText('Código'), 'LIB001')
-    await user.type(screen.getByLabelText('Nombre'), 'Otro libro')
-    await user.type(screen.getByLabelText('Autor'), 'Autora de prueba')
-    await user.selectOptions(screen.getByLabelText('Categoría'), 'Narrativa')
-    await user.type(screen.getByLabelText('Precio (CLP)'), '10000')
-    await user.type(screen.getByLabelText('Stock'), '4')
-    await user.click(screen.getByRole('button', { name: 'Crear producto' }))
-
-    expect(screen.getByRole('alert')).toHaveTextContent('Ya existe un producto con ese código')
-    expect(getProducts()).toHaveLength(5)
+  it('carga el libro y actualiza mediante PUT', async () => {
+    const fetch = mockApi(() => json(book))
+    show('/admin/productos/7/editar')
+    expect(await screen.findByLabelText('Título')).toHaveValue(book.title)
+    fill('8')
+    await userEvent.click(screen.getByRole('button', { name: 'Guardar cambios' }))
+    expect(await screen.findByText('Producto actualizado correctamente.')).toBeInTheDocument()
+    expect(fetch.mock.calls[1][0]).toBe('/api/books/7')
+    expect(fetch.mock.calls[1][1].method).toBe('PUT')
+  })
+  it('permite reintentar al fallar la carga, sin editar datos vacíos', async () => {
+    let fail = true
+    mockApi(() => fail ? json({}, 404) : json(book))
+    show('/admin/productos/7/editar')
+    expect(await screen.findByRole('alert')).toHaveTextContent('404')
+    expect(screen.queryByRole('button', { name: 'Guardar cambios' })).not.toBeInTheDocument()
+    fail = false
+    await userEvent.click(screen.getByRole('button', { name: 'Reintentar' }))
+    expect(await screen.findByLabelText('Título')).toHaveValue(book.title)
+  })
+  it('bloquea un segundo envío mientras guarda y conserva datos si falla', async () => {
+    let resolve
+    const fetch = mockApi(() => new Promise((done) => { resolve = done }))
+    show(); fill()
+    await userEvent.click(screen.getByRole('button', { name: 'Crear producto' }))
+    expect(screen.getByRole('button', { name: 'Guardando…' })).toBeDisabled()
+    expect(fetch).toHaveBeenCalledTimes(1)
+    resolve(json({}, 503))
+    expect(await screen.findByRole('alert')).toHaveTextContent('503')
+    expect(screen.getByLabelText('Título')).toHaveValue('Libro nuevo')
+  })
+  it('consulta detalle sin escribir', async () => {
+    mockApi(() => json(book))
+    show('/admin/productos/7')
+    expect(await screen.findByText(book.title)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Editar producto' })).toHaveAttribute('href', '/admin/productos/7/editar')
   })
 })

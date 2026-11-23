@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { solicitar } from '../services/api'
+import { cargarLibros, STOCK_BAJO, tieneStockBajo } from './adminApi'
 
 function AdminProducts() {
+    const location = useLocation()
+    const [success, setSuccess] = useState(location.state?.success ?? '')
     const [products, setProducts] = useState([])
     const [query, setQuery] = useState('')
     const [loading, setLoading] = useState(true)
@@ -18,7 +21,7 @@ function AdminProducts() {
             setError('')
 
             try {
-                const data = await solicitar('/books')
+                const data = await cargarLibros()
 
                 if (!Array.isArray(data)) {
                     throw new Error('El servidor devolvió una lista de libros inválida.')
@@ -66,6 +69,7 @@ function AdminProducts() {
             return
         }
 
+        setSuccess('')
         setDeletingId(id)
         setError('')
 
@@ -74,6 +78,7 @@ function AdminProducts() {
                 method: 'DELETE',
             })
 
+            setSuccess('Producto eliminado correctamente.')
             setProducts((current) =>
                 current.filter((item) => item.id !== id)
             )
@@ -107,6 +112,8 @@ function AdminProducts() {
                 </Link>
             </div>
 
+            {success && <p className="alert alert-success" role="status">{success}</p>}
+            <p>Stock bajo: {STOCK_BAJO} unidades o menos.</p>
             {error && (
                 <div className="alert alert-danger" role="alert">
                     <p className="mb-2">{error}</p>
@@ -155,7 +162,7 @@ function AdminProducts() {
                     {loading ? (
                         <tr>
                             <td colSpan="6" className="text-center py-4">
-                                Cargando libros…
+                                <span role="status">Cargando libros…</span>
                             </td>
                         </tr>
                     ) : (
@@ -163,7 +170,7 @@ function AdminProducts() {
                             {filtered.map((product) => (
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
-                                    <td>{product.name}</td>
+                                    <td><Link to={`/admin/productos/${encodeURIComponent(product.id)}`}>{product.name}</Link></td>
                                     <td>{product.author}</td>
                                     <td>
                                         ${Number(product.price).toLocaleString('es-CL')}
@@ -171,12 +178,12 @@ function AdminProducts() {
                                     <td>
                       <span
                           className={
-                              Number(product.stock) <= 5
+                              tieneStockBajo(product)
                                   ? 'badge text-bg-warning'
                                   : 'badge text-bg-success'
                           }
                       >
-                        {product.stock}
+                        {product.stock} {tieneStockBajo(product) ? '(Stock bajo)' : ''}
                       </span>
                                     </td>
                                     <td>

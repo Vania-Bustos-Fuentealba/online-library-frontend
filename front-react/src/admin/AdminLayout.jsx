@@ -14,6 +14,7 @@ function AdminLayout() {
   const [sesion, setSesion] = useState(obtenerSesion)
 
   useEffect(() => {
+    // La sesión se comprueba al montar, al vencer, al volver a la pestaña y al cambiar en otra.
     let temporizador
 
     function comprobarSesion() {
@@ -95,6 +96,7 @@ function AdminLayout() {
   }
 
   if (sesion.rol !== 'admin') {
+    // Esta barrera protege la interfaz; el Gateway debe validar cada operación real.
     return <Navigate to="/productos" replace />
   }
 
