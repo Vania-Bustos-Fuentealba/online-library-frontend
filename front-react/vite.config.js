@@ -3,6 +3,17 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
+
   test: {
     environment: 'jsdom',
     globals: true,
@@ -18,8 +29,8 @@ export default defineConfig({
         'src/pages/Checkout.jsx',
         'src/pages/Carrito.jsx',
         'src/components/CampoFormulario.jsx',
-        'src/utils/**'
-      ]
-    }
-  }
+        'src/utils/**',
+      ],
+    },
+  },
 })
