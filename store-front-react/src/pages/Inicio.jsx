@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom'
-import productos from '../data/productos'
 import TarjetaLibro from '../components/TarjetaLibro'
+import Cargando from '../components/Cargando'
+import AvisoError from '../components/AvisoError'
 import { useCarrito } from '../hooks/useCarrito'
+import { useLibros } from '../hooks/useLibros'
 
 function Inicio() {
   const { agregarAlCarrito } = useCarrito()
+  // Los libros vienen de la API del backend
+  const { libros, cargando, error } = useLibros()
 
   // Destacados: los primeros 4 libros que tengan stock
-  const destacados = productos.filter((libro) => libro.stock > 0).slice(0, 4)
+  const destacados = libros.filter((libro) => libro.stock > 0).slice(0, 4)
 
   return (
     <>
@@ -31,6 +35,9 @@ function Inicio() {
           <h2 className="h3 mb-0">Destacados</h2>
           <Link to="/productos">Ver todo el catálogo →</Link>
         </div>
+
+        {cargando && <Cargando texto="Cargando libros..." />}
+        {error && <AvisoError mensaje={error} />}
 
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
           {destacados.map((libro) => (

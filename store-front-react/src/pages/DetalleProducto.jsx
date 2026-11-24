@@ -1,17 +1,29 @@
 import { Link, useParams } from 'react-router-dom'
-import productos from '../data/productos'
 import FichaLibro from '../components/FichaLibro'
 import TarjetaLibro from '../components/TarjetaLibro'
+import Cargando from '../components/Cargando'
+import AvisoError from '../components/AvisoError'
 import { useCarrito } from '../hooks/useCarrito'
+import { useLibro, useLibros } from '../hooks/useLibros'
 
 function DetalleProducto() {
   // El id viene de la URL: /productos/:id
   const { id } = useParams()
   const { agregarAlCarrito } = useCarrito()
 
-  const libro = productos.find((p) => p.id === Number(id))
+  // El libro y la lista de libros relacionados vienen de la API
+  const { libro, cargando, noEncontrado, error } = useLibro(id)
+  const { libros } = useLibros()
 
-  if (!libro) {
+  if (cargando) {
+    return <Cargando texto="Cargando libro..." />
+  }
+
+  if (error) {
+    return <AvisoError mensaje={error} />
+  }
+
+  if (noEncontrado || !libro) {
     return (
       <section className="text-center py-5">
         <h1 className="h2">Producto no encontrado</h1>
@@ -23,7 +35,7 @@ function DetalleProducto() {
     )
   }
 
-  const relacionados = productos
+  const relacionados = libros
     .filter((p) => p.categoria === libro.categoria && p.id !== libro.id)
     .slice(0, 4)
 

@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import productos from '../data/productos'
 import TarjetaLibro from '../components/TarjetaLibro'
+import Cargando from '../components/Cargando'
+import AvisoError from '../components/AvisoError'
 import { useCarrito } from '../hooks/useCarrito'
+import { useLibros } from '../hooks/useLibros'
 
 function Productos() {
   // Estado: categoría seleccionada en el filtro ('' significa todas)
@@ -9,12 +11,14 @@ function Productos() {
   // Estado: mensaje que confirma que se añadió un libro
   const [aviso, setAviso] = useState('')
   const { agregarAlCarrito } = useCarrito()
+  // Los libros vienen de la API del backend
+  const { libros, cargando, error } = useLibros()
 
-  const categorias = [...new Set(productos.map((libro) => libro.categoria))].sort()
+  const categorias = [...new Set(libros.map((libro) => libro.categoria))].sort()
 
   const librosVisibles = categoria
-    ? productos.filter((libro) => libro.categoria === categoria)
-    : productos
+    ? libros.filter((libro) => libro.categoria === categoria)
+    : libros
 
   function manejarAgregar(libro) {
     agregarAlCarrito(libro)
@@ -46,15 +50,20 @@ function Productos() {
         </div>
       </div>
 
+      {cargando && <Cargando texto="Cargando catálogo..." />}
+      {error && <AvisoError mensaje={error} />}
+
       {aviso && (
         <div className="alert alert-success py-2" role="status">
           {aviso}
         </div>
       )}
 
-      <p className="text-muted small">
-        {librosVisibles.length} {librosVisibles.length === 1 ? 'producto' : 'productos'}
-      </p>
+      {!cargando && !error && (
+        <p className="text-muted small">
+          {librosVisibles.length} {librosVisibles.length === 1 ? 'producto' : 'productos'}
+        </p>
+      )}
 
       <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
         {librosVisibles.map((libro) => (

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCarrito } from '../hooks/useCarrito'
 import { formatearPrecio } from '../utils/formato'
+import { crearPedido } from '../services/api'
 import {
   validarNombre,
   validarCorreo,
@@ -22,7 +23,7 @@ const VALIDADORES = {
 }
 
 function Checkout() {
-  const { carrito, subtotal, descuento, envio, total, vaciarCarrito } = useCarrito()
+  const { carrito, cupon, subtotal, descuento, envio, total, vaciarCarrito } = useCarrito()
 
   // Estados del formulario: valores, errores por campo y campos que el usuario ya tocó
   const [datos, setDatos] = useState(DATOS_INICIALES)
@@ -30,6 +31,9 @@ function Checkout() {
   const [tocados, setTocados] = useState({})
   // Estado: resumen del pedido una vez confirmado
   const [pedido, setPedido] = useState(null)
+  // Estados de la comunicación con el backend
+  const [enviando, setEnviando] = useState(false)
+  const [errorServidor, setErrorServidor] = useState('')
 
   function manejarCambio(evento) {
     const { name, value } = evento.target
@@ -43,7 +47,7 @@ function Checkout() {
     setTocados((actual) => ({ ...actual, [name]: true }))
   }
 
-  function manejarEnvio(evento) {
+  async function manejarEnvio(evento) {
     evento.preventDefault()
 
     const erroresFinales = validarFormularioCompra(datos)
@@ -52,8 +56,33 @@ function Checkout() {
 
     if (Object.keys(erroresFinales).length > 0) return
 
-    setPedido({ cliente: datos.nombre.trim(), correo: datos.correo.trim(), total })
-    vaciarCarrito()
+    // Se envía el pedido al backend: él valida el stock, aplica el cupón y calcula el total
+    setEnviando(true)
+    setErrorServidor('')
+
+    try {
+      const respuesta = await crearPedido({
+        cliente: datos.nombre.trim(),
+        correo: datos.correo.trim(),
+        direccion: datos.direccion.trim(),
+        comuna: datos.comuna.trim(),
+        metodoPago: datos.pago,
+        cupon,
+        items: carrito.map((item) => ({ libroId: item.id, cantidad: item.cantidad })),
+      })
+
+      setPedido({
+        numero: respuesta.id,
+        cliente: respuesta.cliente,
+        correo: respuesta.correo,
+        total: respuesta.total,
+      })
+      vaciarCarrito()
+    } catch (error) {
+      setErrorServidor(error.message)
+    } finally {
+      setEnviando(false)
+    }
   }
 
   // Un campo se muestra con error solo después de que el usuario lo tocó
@@ -66,6 +95,7 @@ function Checkout() {
     return (
       <section className="checkout-confirmacion text-center" role="status">
         <h1 className="h2">¡Pedido registrado!</h1>
+        <p className="mb-1">Número de pedido: #{pedido.numero}</p>
         <p className="mb-1">Gracias por tu compra, {pedido.cliente}.</p>
         <p className="mb-1">Enviaremos el detalle a {pedido.correo}.</p>
         <p className="fw-semibold">Total pagado: {formatearPrecio(pedido.total)}</p>
@@ -216,8 +246,14 @@ function Checkout() {
               )}
             </fieldset>
 
-            <button type="submit" className="btn btn-success btn-lg">
-              Confirmar pedido
+            {errorServidor && (
+              <div className="alert alert-danger" role="alert">
+                {errorServidor}
+              </div>
+            )}
+
+            <button type="submit" className="btn btn-success btn-lg" disabled={enviando}>
+              {enviando ? 'Enviando pedido...' : 'Confirmar pedido'}
             </button>
           </form>
         </div>
