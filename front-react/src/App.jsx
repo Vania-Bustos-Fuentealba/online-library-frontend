@@ -16,6 +16,7 @@ import AdminLayout from './admin/AdminLayout'
 import AdminDashboard from './admin/AdminDashboard'
 import AdminProducts from './admin/AdminProducts'
 import AdminProductForm from './admin/AdminProductForm'
+import AdminProductDetail from './admin/AdminProductDetail'
 import AdminUsers from './admin/AdminUsers'
 import AdminUserForm from './admin/AdminUserForm'
 
@@ -44,9 +45,11 @@ function App() {
           <Route index element={<AdminDashboard />} />
           <Route path="productos" element={<AdminProducts />} />
           <Route path="productos/nuevo" element={<AdminProductForm />} />
+          <Route path="productos/:id" element={<AdminProductDetail />} />
           <Route path="productos/:id/editar" element={<AdminProductForm />} />
           <Route path="usuarios" element={<AdminUsers />} />
           <Route path="usuarios/nuevo" element={<AdminUserForm />} />
+          <Route path="usuarios/:id" element={<AdminUserForm />} />
           <Route path="usuarios/:id/editar" element={<AdminUserForm />} />
         </Route>
       </Routes>

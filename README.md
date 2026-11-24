@@ -1,88 +1,36 @@
 # Online Library Frontend
 
-Frontend desarrollado para el proyecto de **Fullstack II**, basado en la continuidad del sistema creado previamente en **Fullstack I**.
+Aplicación vigente: **front-react**, React + Vite. Las carpetas pages, js y assets conservan la entrega HTML anterior. user-front-react no es la aplicación de esta rama.
 
-El proyecto corresponde a una biblioteca online que contempla una experiencia diferenciada para clientes y administradores. La entrega anterior se construyó con HTML, CSS, JavaScript y Bootstrap; en la Evaluación Parcial 2 se migró a **React** (carpeta `front-react`).
+## Ejecutar
 
-## Objetivo
-
-Desarrollar la interfaz web de una tienda de libros online e integrarla posteriormente con una arquitectura backend basada en microservicios.
-
-## Funcionalidades principales
-
-### Vista cliente
-
-- Página principal
-- Registro de usuario
-- Inicio de sesión
-- Catálogo de productos
-- Detalle de productos
-- Carrito de compras con cupones
-- Checkout con validación de datos de despacho
-- Página Nosotros
-- Blog
-- Detalle de publicaciones
-- Formulario de contacto
-
-### Vista administrador
-
-- Dashboard administrativo
-- Gestión de productos
-- Creación y edición de productos
-- Gestión de usuarios
-- Creación y edición de usuarios
-
-## Aplicación React
-
-La aplicación React se ejecuta desde `front-react`. Entra a esa carpeta, instala las dependencias con `npm install` y ejecuta `npm run dev`.
-
-El panel administrativo está disponible en `/admin` después de iniciar sesión con una cuenta de rol administrador (cuenta semilla `admin@duoc.cl`, contraseña `admin`). Los productos y el carrito se guardan en LocalStorage; la gestión de usuarios reutiliza el almacenamiento y las validaciones de registro.
-
-> El almacenamiento local sirve para la demostración frontend. La autorización real de administradores y la persistencia compartida requieren el backend.
-
-Más detalles en [`front-react/README.md`](front-react/README.md). Las pruebas unitarias y el resumen de cobertura están en [`front-react/TESTING.md`](front-react/TESTING.md).
-
-## Tecnologías utilizadas
-
-- React y React Router
-- Vite
-- Bootstrap
-- JavaScript
-- LocalStorage
-- Vitest y React Testing Library
-- HTML5 y CSS3 (versión inicial)
-- Git y GitHub
-
-## Integración con backend
-
-El frontend está diseñado para comunicarse con el backend mediante un API Gateway.
-
-La arquitectura backend contempla microservicios como:
-
-- `auth-service`
-- `user-service`
-- `book-service`
-- `inventory-service`
-- `cart-service`
-- `order-service`
-- `payment-service`
-- `review-service`
-- `recommendation-service`
-- `notification-service`
-- `blog-service`
-- `contact-service`
-
-La comunicación general del sistema sigue la estructura:
-
-Frontend → API Gateway → Microservicios
-
-## Estructura del repositorio
-
-```text
-online-library-frontend/
-├── front-react/   Aplicación React (versión actual)
-├── pages/         Plantilla HTML inicial
-├── assets/        Recursos de la plantilla HTML
-├── css/           Estilos de la plantilla HTML
-└── js/            Scripts de la plantilla HTML
+```powershell
+cd front-react
+npm ci
+npm run dev
 ```
+
+El frontend solicita `/api`; Vite elimina ese prefijo y envía la petición al Gateway. Por defecto usa http://localhost:8080. Si ese puerto está ocupado:
+
+```powershell
+$env:GATEWAY_URL = 'http://127.0.0.1:18080'
+npm run dev
+```
+
+La versión de producción requiere un proxy del servidor web de `/api/*` al Gateway y fallback de rutas a index.html. El proxy de Vite solo corresponde a desarrollo/preview; no se incorpora en dist.
+
+## Administración y autenticación
+
+- /admin: resumen de cuentas, libros y stock bajo desde API.
+- /admin/usuarios: listado, búsqueda, detalle, alta, edición, roles ADMIN/CLIENT y eliminación.
+- /admin/productos: listado, búsqueda, detalle y CRUD de libros con precio y existencias.
+- /login: autenticación con JWT; persistencia de sesión, expiración y cierre.
+- Los datos de administración ya no se guardan en LocalStorage. Solo persisten token y metadatos de sesión; el carrito y otras áreas fuera de este alcance conservan su implementación.
+- No hay login simulado ni cuenta local admin@duoc.cl. La cuenta inicial del backend es admin@library.cl; su contraseña nueva procede de ADMIN_INITIAL_PASSWORD, nunca del código.
+- El frontend requiere los cambios de backend de esta revisión: las operaciones de cuentas se implementaron en /auth/users. No se deben confundir esos IDs con los perfiles de /users.
+
+Backend confirmado: https://github.com/Quiti-1556/online-library-microservices
+
+Lee [ADMINISTRACION.md](ADMINISTRACION.md) para contratos, limitaciones y pauta. Pruebas: [front-react/TESTING.md](front-react/TESTING.md).
+
+Para estudiar la implementación, abre la [guía del código administrativo](docs/guia-codigo-administracion.html): incluye 35 archivos con líneas numeradas, notas de lectura y explicación de su propósito. Descarga el HTML y ábrelo en el navegador para ver su formato.

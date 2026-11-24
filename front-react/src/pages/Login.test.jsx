@@ -1,62 +1,42 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, afterEach, vi } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import Login from './Login'
-import { autenticar, iniciarSesion } from '../data/usuarios'
-
-// Mock: reemplaza el acceso a datos por funciones falsas controladas por la prueba
-vi.mock('../data/usuarios', () => ({
-  autenticar: vi.fn(),
-  iniciarSesion: vi.fn()
-}))
-
-function renderLogin() {
-  return render(
-    <MemoryRouter>
-      <Login />
-    </MemoryRouter>
-  )
+import { obtenerSesion } from '../data/usuarios'
+import { mockApi, json, jwt } from '../test/apiHelpers'
+afterEach(() => vi.unstubAllGlobals())
+function show() {
+  render(<MemoryRouter initialEntries={['/login']}><Routes>
+    <Route path="/login" element={<Login />} /><Route path="/admin" element={<p>Panel admin</p>} /><Route path="/productos" element={<p>Catálogo</p>} />
+  </Routes></MemoryRouter>)
 }
-
-async function completarFormulario(user, email, password) {
-  await user.type(screen.getByLabelText(/correo electrónico/i), email)
-  await user.type(screen.getByLabelText(/^contraseña$/i), password)
-  await user.click(screen.getByRole('button', { name: /iniciar sesión/i }))
+function fill() {
+  fireEvent.change(screen.getByLabelText('Correo electrónico'), { target: { value: 'admin@example.com' } })
+  fireEvent.change(screen.getByLabelText('Contraseña'), { target: { value: 'clave123' } })
 }
-
-describe('Login', () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
+describe('Login real', () => {
+  it.each([['ADMIN', 'Panel admin'], ['CLIENT', 'Catálogo']])('inicia sesión %s por Gateway', async (role, destination) => {
+    const fetch = mockApi(() => json({ token: jwt(role), email: 'admin@example.com', role }))
+    show(); fill()
+    await userEvent.click(screen.getByRole('button', { name: 'Iniciar sesión' }))
+    expect(await screen.findByText(destination)).toBeInTheDocument()
+    expect(obtenerSesion().rol).toBe(role === 'ADMIN' ? 'admin' : 'cliente')
+    expect(fetch.mock.calls[0][0]).toBe('/api/auth/login')
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ email: 'admin@example.com', password: 'clave123' })
   })
-
-  it('muestra un error si las credenciales son incorrectas', async () => {
-    autenticar.mockReturnValue(null)
-    const user = userEvent.setup()
-    renderLogin()
-
-    await completarFormulario(user, 'cliente@gmail.com', '9999')
-
-    expect(
-      await screen.findByText('Correo o contraseña incorrectos.')
-    ).toBeInTheDocument()
-    expect(iniciarSesion).not.toHaveBeenCalled()
+  it('informa credenciales incorrectas y no crea sesión', async () => {
+    mockApi(() => json({ details: 'Credenciales incorrectas' }, 400))
+    show(); fill()
+    await userEvent.click(screen.getByRole('button', { name: 'Iniciar sesión' }))
+    expect(await screen.findByRole('alert')).toHaveTextContent('Credenciales incorrectas')
+    expect(obtenerSesion()).toBeNull()
   })
-
-  it('inicia sesión y da la bienvenida con credenciales correctas', async () => {
-    autenticar.mockReturnValue({
-      id: 2,
-      nombre: 'Cliente',
-      email: 'cliente@gmail.com',
-      rol: 'cliente'
-    })
-    const user = userEvent.setup()
-    renderLogin()
-
-    await completarFormulario(user, 'cliente@gmail.com', '1234')
-
-    expect(autenticar).toHaveBeenCalledWith('cliente@gmail.com', '1234')
-    expect(iniciarSesion).toHaveBeenCalledTimes(1)
-    expect(await screen.findByText(/Bienvenido\/a, Cliente/)).toBeInTheDocument()
+  it.each([{ email: 'admin@example.com', role: 'ADMIN' }, { token: jwt(), email: 'otra@example.com', role: 'ADMIN' }])('rechaza respuesta incompleta o incoherente', async (response) => {
+    mockApi(() => json(response))
+    show(); fill()
+    await userEvent.click(screen.getByRole('button', { name: 'Iniciar sesión' }))
+    expect(await screen.findByRole('alert')).toBeInTheDocument()
+    expect(obtenerSesion()).toBeNull()
   })
 })
