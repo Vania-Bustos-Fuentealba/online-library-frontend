@@ -1,17 +1,30 @@
+import { useCallback } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { obtenerBlogPorId } from '../data/blogs'
+import { cargarPost } from '../services/contenidoApi'
+import { useAdminResource } from '../admin/useAdminResource'
 
 function DetalleBlog() {
   const { id } = useParams()
-  const blog = obtenerBlogPorId(id)
+  const cargar = useCallback(() => cargarPost(id), [id])
+  const { data: blog, loading, error } = useAdminResource(cargar)
 
-  if (!blog) {
+  if (loading) {
     return (
       <section className="user-section">
         <div className="container text-center">
-          <h1 className="user-section-title">Artículo no encontrado</h1>
+          <p>Cargando artículo…</p>
+        </div>
+      </section>
+    )
+  }
+
+  if (error || !blog) {
+    return (
+      <section className="user-section">
+        <div className="container text-center">
+          <h1 className="user-section-title">Artículo no disponible</h1>
           <p className="user-section-description">
-            El artículo que buscas no existe o fue eliminado.
+            {error || 'El artículo que buscas no existe o fue eliminado.'}
           </p>
           <Link to="/blog" className="btn user-btn">
             Volver al Blog
@@ -30,11 +43,13 @@ function DetalleBlog() {
           </Link>
 
           <article className="user-blog-detail-card">
-            <img
-              className="user-blog-detail-image"
-              src={blog.imagen}
-              alt={blog.alt}
-            />
+            {blog.imagen && (
+              <img
+                className="user-blog-detail-image"
+                src={blog.imagen}
+                alt={blog.alt}
+              />
+            )}
 
             <div className="user-blog-detail-body">
               <h1>{blog.titulo}</h1>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import CampoFormulario from '../components/CampoFormulario'
-import { crearMensaje } from '../data/mensajes'
+import { enviarMensajeContacto } from '../services/contenidoApi'
 import { validarEmail } from '../utils/validaciones'
 
 const VALORES_INICIALES = { nombre: '', email: '', comentario: '' }
@@ -9,6 +9,8 @@ function Contacto() {
   const [valores, setValores] = useState(VALORES_INICIALES)
   const [intento, setIntento] = useState(false)
   const [exito, setExito] = useState(false)
+  const [error, setError] = useState('')
+  const [cargando, setCargando] = useState(false)
 
   const nombre = valores.nombre.trim()
   const comentario = valores.comentario.trim()
@@ -34,19 +36,34 @@ function Contacto() {
     const { name, value } = evento.target
     setValores((anterior) => ({ ...anterior, [name]: value }))
     setExito(false)
+    setError('')
   }
 
-  const handleSubmit = (evento) => {
+  const handleSubmit = async (evento) => {
     evento.preventDefault()
+
+    if (cargando) return
+
     setIntento(true)
+    setExito(false)
+    setError('')
 
     if (!formularioValido) return
 
-    crearMensaje(valores)
+    setCargando(true)
 
-    setValores(VALORES_INICIALES)
-    setIntento(false)
-    setExito(true)
+    try {
+      await enviarMensajeContacto(valores)
+
+      setValores(VALORES_INICIALES)
+      setIntento(false)
+      setExito(true)
+    } catch (err) {
+      // Se conserva lo escrito para que la persona pueda reintentar
+      setError(err.message || 'No se pudo enviar el mensaje.')
+    } finally {
+      setCargando(false)
+    }
   }
 
   return (
@@ -67,63 +84,73 @@ function Contacto() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} noValidate>
-            <CampoFormulario
-              id="contactName"
-              label="Nombre completo"
-              mensajeError="Ingresa tu nombre completo."
-            >
-              <input
-                type="text"
-                className={`form-control ${claseCampo('nombre')}`}
-                id="contactName"
-                name="nombre"
-                maxLength={100}
-                placeholder="Ingresa tu nombre completo"
-                value={valores.nombre}
-                onChange={handleChange}
-              />
-            </CampoFormulario>
-
-            <CampoFormulario
-              id="contactEmail"
-              label="Correo electrónico"
-              mensajeError="Ingresa un correo válido."
-            >
-              <input
-                type="email"
-                className={`form-control ${claseCampo('email')}`}
-                id="contactEmail"
-                name="email"
-                maxLength={100}
-                placeholder="ejemplo@duoc.cl"
-                value={valores.email}
-                onChange={handleChange}
-              />
-            </CampoFormulario>
-
-            <CampoFormulario
-              id="contactMessage"
-              label="Comentario"
-              mensajeError="El comentario debe tener entre 10 y 500 caracteres."
-            >
-              <textarea
-                className={`form-control ${claseCampo('comentario')}`}
-                id="contactMessage"
-                name="comentario"
-                maxLength={500}
-                placeholder="Escribe tu comentario..."
-                rows={6}
-                value={valores.comentario}
-                onChange={handleChange}
-              />
-            </CampoFormulario>
-
-            <div className="text-center mt-4">
-              <button type="submit" className="btn user-btn">
-                Enviar mensaje
-              </button>
+          {error && (
+            <div className="user-alert user-alert-error" role="alert">
+              {error}
             </div>
+          )}
+
+          <form onSubmit={handleSubmit} noValidate>
+            <fieldset disabled={cargando}>
+              <legend className="visually-hidden">Datos de contacto</legend>
+
+              <CampoFormulario
+                id="contactName"
+                label="Nombre completo"
+                mensajeError="Ingresa tu nombre completo."
+              >
+                <input
+                  type="text"
+                  className={`form-control ${claseCampo('nombre')}`}
+                  id="contactName"
+                  name="nombre"
+                  maxLength={100}
+                  placeholder="Ingresa tu nombre completo"
+                  value={valores.nombre}
+                  onChange={handleChange}
+                />
+              </CampoFormulario>
+
+              <CampoFormulario
+                id="contactEmail"
+                label="Correo electrónico"
+                mensajeError="Ingresa un correo válido."
+              >
+                <input
+                  type="email"
+                  className={`form-control ${claseCampo('email')}`}
+                  id="contactEmail"
+                  name="email"
+                  maxLength={100}
+                  placeholder="ejemplo@duoc.cl"
+                  value={valores.email}
+                  onChange={handleChange}
+                />
+              </CampoFormulario>
+
+              <CampoFormulario
+                id="contactMessage"
+                label="Comentario"
+                mensajeError="El comentario debe tener entre 10 y 500 caracteres."
+              >
+                <textarea
+                  className={`form-control ${claseCampo('comentario')}`}
+                  id="contactMessage"
+                  name="comentario"
+                  maxLength={500}
+                  placeholder="Escribe tu comentario..."
+                  rows={6}
+                  value={valores.comentario}
+                  onChange={handleChange}
+                />
+              </CampoFormulario>
+
+              <div className="text-center mt-4">
+                <button type="submit" className="btn user-btn">
+                  {cargando ? 'Enviando…' : 'Enviar mensaje'}
+                </button>
+              </div>
+            </fieldset>
           </form>
         </div>
       </div>
