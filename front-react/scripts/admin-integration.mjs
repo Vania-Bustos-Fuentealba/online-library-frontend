@@ -5,6 +5,8 @@
 import assert from 'node:assert/strict'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import { randomBytes } from 'node:crypto'
+// Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
+import { testProfile } from './ers-fixtures.mjs'
 
 // Nota de lectura: Define base, que se utiliza en las instrucciones siguientes.
 const base = process.env.BASE_URL ?? 'http://127.0.0.1:8080'
@@ -16,12 +18,16 @@ const password = process.env.ADMIN_PASSWORD
 if (!email || !password) throw new Error('Configura ADMIN_EMAIL y ADMIN_PASSWORD para una base de pruebas.')
 // Nota de lectura: Define suffix, que se utiliza en las instrucciones siguientes.
 const suffix = Date.now()
+// Nota de lectura: Define profileData, que se utiliza en las instrucciones siguientes.
+const profileData = testProfile(suffix)
+// Nota de lectura: Define publicData, que se utiliza en las instrucciones siguientes.
+const publicData = testProfile(suffix + 1)
 // Nota de lectura: Define clientEmail, que se utiliza en las instrucciones siguientes.
-const clientEmail = `admin-check-${suffix}@example.com`
+const clientEmail = `admin-check-${suffix}@gmail.com`
 // Nota de lectura: Define editedEmail, que se utiliza en las instrucciones siguientes.
-const editedEmail = `admin-edited-${suffix}@example.com`
+const editedEmail = `admin-edited-${suffix}@gmail.com`
 // Nota de lectura: Define testPassword, que se utiliza en las instrucciones siguientes.
-const testPassword = randomBytes(18).toString('base64url')
+const testPassword = randomBytes(6).toString('base64url')
 // Nota de lectura: Define adminToken, que se utiliza en las instrucciones siguientes.
 let adminToken
 // Nota de lectura: Define accounts, que se utiliza en las instrucciones siguientes.
@@ -92,7 +98,7 @@ try {
   // Nota de lectura: Define user, que se utiliza en las instrucciones siguientes.
   const user = await request('/auth/users', { method: 'POST', token: adminToken, status: 201,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Cuenta de prueba', email: clientEmail, password: testPassword, role: 'CLIENT' } })
+    body: { ...profileData, name: 'Cuenta de prueba', email: clientEmail, password: testPassword, role: 'CLIENT' } })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   accounts.add(user.id)
   // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
@@ -100,15 +106,15 @@ try {
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request('/auth/users', { method: 'POST', token: adminToken, status: 409,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Duplicado', email: clientEmail, password: testPassword, role: 'CLIENT' } })
+    body: { ...profileData, name: 'Duplicado', email: clientEmail, password: testPassword, role: 'CLIENT' } })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request('/auth/users', { method: 'POST', token: adminToken, status: 400,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Rol inválido', email: clientEmail, password: testPassword, role: 'NO_EXISTE' } })
+    body: { ...profileData, name: 'Rol inválido', email: clientEmail, password: testPassword, role: 'NO_EXISTE' } })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request('/auth/users', { method: 'POST', token: adminToken, status: 400,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Clave larga', email: clientEmail, password: 'é'.repeat(37), role: 'CLIENT' } })
+    body: { ...profileData, name: 'Clave larga', email: clientEmail, password: 'é'.repeat(37), role: 'CLIENT' } })
   // Nota de lectura: Define profiles, que se utiliza en las instrucciones siguientes.
   const profiles = await request('/users', { token: adminToken })
   // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
@@ -125,7 +131,7 @@ try {
   await request('/books', { method: 'POST', token: client.token, body: {}, status: 403 })
 
   // Nota de lectura: Define bookData, que se utiliza en las instrucciones siguientes.
-  const bookData = { title: `Libro de prueba ${suffix}`, author: 'Autora de prueba', price: 12.5, stock: 0 }
+  const bookData = { code: `ADMIN-${suffix}`, category: 'Narrativa', criticalStock: 2, description: 'Prueba de administración', imageUrl: '/books/Alas_de_sangre.webp', title: `Libro de prueba ${suffix}`, author: 'Autora de prueba', price: 12.5, stock: 0 }
   // Nota de lectura: Define book, que se utiliza en las instrucciones siguientes.
   const book = await request('/books', { method: 'POST', token: adminToken, body: bookData, status: 201 })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
@@ -144,17 +150,17 @@ try {
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request(`/auth/users/${user.id}`, { method: 'PUT', token: adminToken,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Cuenta editada', email: editedEmail, role: 'CLIENT' } })
+    body: { ...profileData, name: 'Cuenta editada', email: editedEmail, role: 'CLIENT' } })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request('/auth/users', { token: client.token, status: 401 })
   // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
   assert.equal((await login(editedEmail, testPassword)).role, 'CLIENT')
   // Nota de lectura: Define newPassword, que se utiliza en las instrucciones siguientes.
-  const newPassword = randomBytes(18).toString('base64url')
+  const newPassword = randomBytes(6).toString('base64url')
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request(`/auth/users/${user.id}`, { method: 'PUT', token: adminToken,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Cuenta editada', email: editedEmail, password: newPassword, role: 'CLIENT' } })
+    body: { ...profileData, name: 'Cuenta editada', email: editedEmail, password: newPassword, role: 'CLIENT' } })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request('/auth/login', { method: 'POST', body: { email: editedEmail, password: testPassword }, status: 401 })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
@@ -167,7 +173,7 @@ try {
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request(`/auth/users/${user.id}`, { method: 'PUT', token: adminToken,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Cuenta editada', email: editedEmail, role: 'ADMIN' } })
+    body: { ...profileData, name: 'Cuenta editada', email: editedEmail, role: 'ADMIN' } })
   // Nota de lectura: Define promoted, que se utiliza en las instrucciones siguientes.
   const promoted = await login(editedEmail, newPassword)
   // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
@@ -177,7 +183,7 @@ try {
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request(`/auth/users/${user.id}`, { method: 'PUT', token: adminToken,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Cuenta editada', email: editedEmail, role: 'CLIENT' } })
+    body: { ...profileData, name: 'Cuenta editada', email: editedEmail, role: 'CLIENT' } })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request('/auth/users', { token: promoted.token, status: 403 })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
@@ -187,14 +193,14 @@ try {
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   await request(`/auth/users/${self.id}`, { method: 'PUT', token: adminToken,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: self.name, email, role: 'CLIENT' }, status: 409 })
+    body: { ...profileData, name: self.name, email, role: 'CLIENT' }, status: 409 })
 
   // Nota de lectura: Define publicEmail, que se utiliza en las instrucciones siguientes.
-  const publicEmail = `public-check-${suffix}@example.com`
+  const publicEmail = `public-check-${suffix}@gmail.com`
   // Nota de lectura: Define publicUser, que se utiliza en las instrucciones siguientes.
   const publicUser = await request('/auth/register', { method: 'POST', status: 201,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    body: { name: 'Registro público', email: publicEmail, password: testPassword, role: 'ADMIN' } })
+    body: { ...publicData, name: 'Registro público', email: publicEmail, password: testPassword, role: 'ADMIN' } })
   // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
   accounts.add(publicUser.id)
   // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.

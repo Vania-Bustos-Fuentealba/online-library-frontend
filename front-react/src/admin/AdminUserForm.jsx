@@ -10,6 +10,10 @@ import { obtenerSesion } from '../data/usuarios'
 import { validarUsuario } from './adminApi'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import { useAdminResource } from './useAdminResource'
+// Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
+import ProfileFields from '../components/ProfileFields'
+// Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
+import { perfilVacio, validarPerfil, datosPerfil, errorPassword, nombresRoles } from '../utils/perfil'
 
 // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
 function AccountLoader({ id, editing }) {
@@ -31,7 +35,7 @@ function AccountLoader({ id, editing }) {
     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
     <dl className="admin-form"><dt>Nombre</dt><dd>{user.name}</dd><dt>Correo</dt><dd>{user.email}</dd>
       {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-      <dt>Rol</dt><dd>{user.role === 'ADMIN' ? 'Administrador' : 'Cliente'}</dd></dl>
+      <dt>RUN</dt><dd>{user.run || 'Pendiente de completar'}</dd><dt>Apellidos</dt><dd>{user.lastName || 'Pendiente de completar'}</dd><dt>Fecha de nacimiento</dt><dd>{user.birthDate || 'No indicada'}</dd><dt>Región / comuna</dt><dd>{user.region} / {user.commune}</dd><dt>Dirección</dt><dd>{user.address || 'Pendiente de completar'}</dd><dt>Rol</dt><dd>{nombresRoles[user.role]}</dd></dl>
     {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
     <Link className="btn btn-primary" to={`/admin/usuarios/${id}/editar`}>Editar usuario</Link>{' '}
     {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
@@ -49,9 +53,11 @@ function AccountEditor({ current }) {
   const editing = Boolean(current)
   // La contraseña siempre empieza vacía; el servidor nunca devuelve la contraseña almacenada.
   // Nota de lectura: Declara un estado de React y la función que lo actualiza; al cambiar vuelve a renderizar la pantalla.
-  const [form, setForm] = useState({ name: current?.name ?? '', email: current?.email ?? '', role: current?.role ?? 'CLIENT', password: '', confirm: '' })
+  const [form, setForm] = useState({ ...Object.fromEntries(Object.keys(perfilVacio).map(key => [key, current?.[key] ?? ''])), role: current?.role ?? 'CLIENT', password: '', confirm: '' })
   // Nota de lectura: Declara un estado de React y la función que lo actualiza; al cambiar vuelve a renderizar la pantalla.
   const [error, setError] = useState('')
+  // Nota de lectura: Declara un estado de React y la función que lo actualiza; al cambiar vuelve a renderizar la pantalla.
+  const [errors, setErrors] = useState({})
   // Nota de lectura: Declara un estado de React y la función que lo actualiza; al cambiar vuelve a renderizar la pantalla.
   const [saving, setSaving] = useState(false)
   // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
@@ -59,7 +65,7 @@ function AccountEditor({ current }) {
   // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
   function update(event) {
     // Nota de lectura: Actualiza los valores visibles del formulario.
-    setForm((previous) => ({ ...previous, [event.target.name]: event.target.value }))
+    setForm((previous) => ({ ...previous, [event.target.name]: event.target.value, ...(event.target.name === 'region' ? { commune: '' } : {}) }))
     // Nota de lectura: Actualiza el mensaje de error que verá la persona.
     setError('')
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -70,22 +76,16 @@ function AccountEditor({ current }) {
     event.preventDefault()
     // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
     if (saving) return
-    // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
-    const name = form.name.trim()
-    // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
-    const email = form.email.trim().toLowerCase()
+    // Nota de lectura: Define found, que se utiliza en las instrucciones siguientes.
+    const found = validarPerfil(form, protectedIdentity)
+    // Nota de lectura: Define passwordError, que se utiliza en las instrucciones siguientes.
+    const passwordError = errorPassword(form.password, form.confirm, !editing)
     // Nota de lectura: Actualiza el mensaje de error que verá la persona.
-    if (name.length < 2 || name.length > 100) return setError('El nombre debe tener entre 2 y 100 caracteres.')
+    setErrors(found); setError(passwordError)
+    // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
+    if (Object.keys(found).length || passwordError) return
     // Nota de lectura: Actualiza el mensaje de error que verá la persona.
-    if (email.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setError('Ingresa un correo válido de hasta 100 caracteres.')
-    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
-    if ((!editing || form.password) && (form.password.length < 6 || form.password.length > 100)) return setError('La contraseña debe tener entre 6 y 100 caracteres.')
-    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
-    if (form.password !== form.confirm) return setError('Las contraseñas deben coincidir.')
-    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
-    if (new TextEncoder().encode(form.password).length > 72) return setError('La contraseña supera los 72 bytes permitidos; usa una más corta.')
-    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
-    if (!['ADMIN', 'CLIENT'].includes(form.role)) return setError('Selecciona un rol válido.')
+    if (!['ADMIN', 'CLIENT', 'SELLER'].includes(form.role)) return setError('Selecciona un rol válido.')
     // Nota de lectura: Marca la operación en curso para impedir envíos o borrados duplicados.
     setSaving(true)
     // Nota de lectura: Actualiza el mensaje de error que verá la persona.
@@ -94,7 +94,7 @@ function AccountEditor({ current }) {
     try {
       // Solo las rutas administrativas aceptan un rol; registro público sigue creando CLIENT.
       // Nota de lectura: Define body, que se utiliza en las instrucciones siguientes.
-      const body = { name, email, role: form.role }
+      const body = { ...datosPerfil(form), role: form.role }
       // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
       if (form.password) body.password = form.password
       // Nota de lectura: Inicia una solicitud HTTP al recurso indicado. await espera su resultado antes de seguir.
@@ -119,16 +119,14 @@ function AccountEditor({ current }) {
       <fieldset disabled={saving}><legend className="visually-hidden">Datos de la cuenta</legend>
         {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
         <div className="row g-3">
+          {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
+          <ProfileFields form={form} onChange={update} errors={errors} lockedEmail={protectedIdentity} />
           {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
-          <div className="col-md-6"><label className="form-label" htmlFor="name">Nombre completo</label><input className="form-control" id="name" name="name" maxLength={100} value={form.name} onChange={update} required /></div>
+          <div className="col-md-6"><label className="form-label" htmlFor="role">Rol</label><select className="form-select" id="role" name="role" value={form.role} onChange={update} disabled={protectedIdentity}><option value="CLIENT">Cliente</option><option value="ADMIN">Administrador</option><option value="SELLER">Vendedor</option></select></div>
           {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
-          <div className="col-md-6"><label className="form-label" htmlFor="email">Correo</label><input className="form-control" type="email" id="email" name="email" maxLength={100} value={form.email} onChange={update} disabled={protectedIdentity} required /></div>
+          <div className="col-md-6"><label className="form-label" htmlFor="password">{editing ? 'Contraseña nueva (opcional)' : 'Contraseña inicial'}</label><input className="form-control" id="password" name="password" type="password" maxLength={10} autoComplete="new-password" value={form.password} onChange={update} /></div>
           {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
-          <div className="col-md-6"><label className="form-label" htmlFor="role">Rol</label><select className="form-select" id="role" name="role" value={form.role} onChange={update} disabled={protectedIdentity}><option value="CLIENT">Cliente</option><option value="ADMIN">Administrador</option></select></div>
-          {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
-          <div className="col-md-6"><label className="form-label" htmlFor="password">{editing ? 'Contraseña nueva (opcional)' : 'Contraseña inicial'}</label><input className="form-control" id="password" name="password" type="password" maxLength={100} autoComplete="new-password" value={form.password} onChange={update} /></div>
-          {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
-          <div className="col-md-6"><label className="form-label" htmlFor="confirm">Confirmar contraseña</label><input className="form-control" id="confirm" name="confirm" type="password" maxLength={100} autoComplete="new-password" value={form.confirm} onChange={update} /></div>
+          <div className="col-md-6"><label className="form-label" htmlFor="confirm">Confirmar contraseña</label><input className="form-control" id="confirm" name="confirm" type="password" maxLength={10} autoComplete="new-password" value={form.confirm} onChange={update} /></div>
         {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
         </div>
         {/* Nota de lectura: Asigna o compara el valor de esta parte de la expresión. */}

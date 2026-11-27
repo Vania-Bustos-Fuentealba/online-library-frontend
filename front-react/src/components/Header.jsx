@@ -244,14 +244,14 @@ function Header() {
                 {sesion ? (
                     // Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript.
                     <>
-                      {/* Nota de lectura: Asigna o compara el valor de esta parte de la expresión. */}
-                      {sesion.rol === 'admin' && (
+                      {/* Nota de lectura: Invoca la operación indicada con los argumentos de este bloque. */}
+                      {['admin', 'vendedor'].includes(sesion.rol) && (
                           // Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript.
                           <li className="nav-item">
                             {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
                             <NavLink
                                 className={claseLink}
-                                to="/admin"
+                                to={sesion.rol === 'admin' ? '/admin' : '/vendedor/productos'}
                             >
                               Administración
                             {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}

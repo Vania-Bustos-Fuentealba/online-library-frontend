@@ -5,10 +5,10 @@ import { Link, useLocation } from 'react-router-dom'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import { solicitar } from '../services/api'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
-import { cargarLibros, STOCK_BAJO, tieneStockBajo } from './adminApi'
+import { cargarLibros, tieneStockBajo } from './adminApi'
 
 // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
-function AdminProducts() {
+function AdminProducts({ readOnly = false, base = '/admin' }) {
     // Nota de lectura: Consulta la ruta y el estado que otra pantalla envió al navegar.
     const location = useLocation()
     // Nota de lectura: Declara un estado de React y la función que lo actualiza; al cambiar vuelve a renderizar la pantalla.
@@ -53,7 +53,7 @@ function AdminProducts() {
                 // Nota de lectura: Transforma cada elemento, por ejemplo de entidad a DTO o de dato a fila visual.
                 const books = data.map((book) => ({
                     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-                    id: book.id,
+                    id: book.id, code: book.code, category: book.category, criticalStock: book.criticalStock,
                     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
                     name: book.title,
                     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
@@ -167,7 +167,7 @@ function AdminProducts() {
     // Nota de lectura: Conserva los elementos que cumplen la condición; sirve para búsqueda o conteo.
     const filtered = products.filter((product) =>
         // Nota de lectura: Completa los argumentos o la expresión iniciada en la línea anterior.
-        `${product.id} ${product.name ?? ''} ${product.author ?? ''}`
+        `${product.id} ${product.code ?? ''} ${product.category ?? ''} ${product.name ?? ''} ${product.author ?? ''}`
             // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
             .toLowerCase()
             // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
@@ -188,25 +188,25 @@ function AdminProducts() {
                     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
                     <h1>Productos</h1>
                     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-                    <p>Gestiona los libros disponibles en la tienda.</p>
+                    <p>{readOnly ? 'Consulta los libros y sus existencias.' : 'Gestiona los libros disponibles en la tienda.'}</p>
                 {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
                 </div>
 
                 {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
-                <Link
+                {!readOnly && <Link
                     className="btn btn-primary"
                     to="/admin/productos/nuevo"
                 >
                     Nuevo producto
                 {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-                </Link>
+                </Link>}
             {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
             </div>
 
             {/* Nota de lectura: Anuncia carga o confirmación sin tratarla como error. */}
             {success && <p className="alert alert-success" role="status">{success}</p>}
             {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-            <p>Stock bajo: {STOCK_BAJO} unidades o menos.</p>
+            <p>Stock bajo: existencias iguales o inferiores al umbral configurado en cada libro.</p>
             {/* Nota de lectura: Invoca la operación indicada con los argumentos de este bloque. */}
             {error && (
                 // Nota de lectura: Presenta el error con semántica accesible para lectores de pantalla.
@@ -300,7 +300,7 @@ function AdminProducts() {
                                     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
                                     <td>{product.id}</td>
                                     {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
-                                    <td><Link to={`/admin/productos/${encodeURIComponent(product.id)}`}>{product.name}</Link></td>
+                                    <td><Link to={`${base}/productos/${encodeURIComponent(product.id)}`}>{product.name}</Link><small className="d-block text-muted">{product.code || 'Código pendiente'} · {product.category || 'Categoría pendiente'}</small></td>
                                     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
                                     <td>{product.author}</td>
                                     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
@@ -329,8 +329,8 @@ function AdminProducts() {
                                     </td>
                                     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
                                     <td>
-                                        {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-                                        <div className="d-flex gap-2">
+                                        {/* Nota de lectura: Asigna o compara el valor de esta parte de la expresión. */}
+                                        {!readOnly && <div className="d-flex gap-2">
                                             {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
                                             <Link
                                                 className="btn btn-sm btn-outline-primary"
@@ -357,7 +357,7 @@ function AdminProducts() {
                                             {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
                                             </button>
                                         {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-                                        </div>
+                                        </div>}
                                     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
                                     </td>
                                 {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}

@@ -1,12 +1,14 @@
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
-import { cerrarSesion } from '../data/usuarios'
+import { cerrarSesion, iniciarSesion, obtenerSesion } from '../data/usuarios'
 
 // El navegador siempre pasa por el Gateway mediante el proxy /api.
 // Nota de lectura: Define API_URL, que se utiliza en las instrucciones siguientes.
 const API_URL = '/api'
 
 // Nota de lectura: Inicia una solicitud HTTP al recurso indicado. await espera su resultado antes de seguir.
-export async function solicitar(ruta, { body, autenticar = true, ...opciones } = {}) {
+export async function solicitar(ruta, { body, autenticar = true, renovar = true, ...opciones } = {}) {
+    // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
+    if (autenticar && renovar) await renovarSiNecesario()
     // Login y registro son públicos: no necesitan un token anterior.
     // Nota de lectura: Lee el valor persistido bajo esa clave en este navegador.
     const token = autenticar ? localStorage.getItem('token') : null
@@ -127,5 +129,42 @@ export async function solicitar(ruta, { body, autenticar = true, ...opciones } =
         throw new Error('El servidor devolvió una respuesta inválida. Revisa la conexión con el Gateway.')
     // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
     }
+// Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
+}
+
+// Todas las llamadas de esta pestaña comparten una renovación para evitar carreras.
+// Nota de lectura: Define renovacionPendiente, que se utiliza en las instrucciones siguientes.
+let renovacionPendiente = null
+// Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
+export async function renovarSiNecesario() {
+  // Nota de lectura: Define sesion, que se utiliza en las instrucciones siguientes.
+  const sesion = obtenerSesion()
+  // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
+  if (!sesion || sesion.expiresAt - Date.now() > 120000) return
+  // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
+  if (renovacionPendiente) return renovacionPendiente
+  // Nota de lectura: Lee el valor persistido bajo esa clave en este navegador.
+  const anterior = localStorage.getItem('token')
+  // Nota de lectura: Define una función corta usada como callback, condición o transformación.
+  renovacionPendiente = (async () => {
+    // Nota de lectura: Inicia una solicitud HTTP al recurso indicado. await espera su resultado antes de seguir.
+    const datos = await solicitar('/auth/refresh', { method: 'POST', renovar: false })
+    // Una respuesta tardía no reabre una sesión cerrada ni reemplaza otra cuenta.
+    // Nota de lectura: Lee el valor persistido bajo esa clave en este navegador.
+    if (localStorage.getItem('token') !== anterior) return
+    // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
+    if (!datos?.token || datos.email !== sesion.email || !['ADMIN', 'CLIENT', 'SELLER'].includes(datos.role)) {
+      // Nota de lectura: Interrumpe la operación y comunica el error al manejador correspondiente.
+      throw new Error('El servidor no pudo renovar la sesión de forma válida.')
+    // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
+    }
+    // Nota de lectura: Persiste el valor en este navegador; esto no concede permisos en el servidor.
+    localStorage.setItem('token', datos.token)
+    // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
+    iniciarSesion({ email: datos.email, nombre: sesion.nombre })
+  // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
+  })()
+  // Nota de lectura: Ejecuta limpieza tanto si hubo éxito como si hubo error.
+  try { await renovacionPendiente } finally { renovacionPendiente = null }
 // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
 }

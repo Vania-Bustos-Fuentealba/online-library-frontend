@@ -30,7 +30,7 @@ export function adaptarLibro(dato) {
   // Nota de lectura: Entrega el resultado de la función o la interfaz que debe renderizar React.
   return { id: libro.id, nombre: libro.title, autor: libro.author, precio: libro.price,
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    stock: libro.stock, stockCritico: 5, categoria: '', descripcion: '', imagen: SIN_PORTADA }
+    stock: libro.stock, stockCritico: libro.criticalStock, categoria: libro.category ?? '', descripcion: libro.description ?? '', imagen: libro.imageUrl || SIN_PORTADA }
 // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
 }
 

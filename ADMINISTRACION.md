@@ -1,4 +1,4 @@
-> Actualización 26/11/2026: este documento conserva la revisión inicial. El estado integrado y las pruebas vigentes están en [ENTREGA.md](ENTREGA.md).
+> Actualización 27/11/2026: este documento conserva la revisión inicial. El estado integrado y las pruebas vigentes están en [ENTREGA.md](ENTREGA.md).
 
 # Revisión e integración de administración
 

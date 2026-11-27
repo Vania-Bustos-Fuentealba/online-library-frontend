@@ -20,7 +20,7 @@ import { cerrarSesion, obtenerSesion } from '../data/usuarios'
 import './admin.css'
 
 // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
-function AdminLayout() {
+function AdminLayout({ seller = false }) {
   // Nota de lectura: Obtiene la función para cambiar de pantalla desde código.
   const navigate = useNavigate()
   // Nota de lectura: Declara un estado de React y la función que lo actualiza; al cambiar vuelve a renderizar la pantalla.
@@ -173,10 +173,10 @@ function AdminLayout() {
   }
 
   // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
-  if (sesion.rol !== 'admin') {
+  if (seller ? !['admin', 'vendedor'].includes(sesion.rol) : sesion.rol !== 'admin') {
     // Esta barrera protege la interfaz; el Gateway debe validar cada operación real.
     // Nota de lectura: Redirige al visitante porque no cumple la condición de acceso.
-    return <Navigate to="/productos" replace />
+    return <Navigate to={sesion.rol === 'vendedor' ? '/vendedor/productos' : '/productos'} replace />
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
   }
 
@@ -187,8 +187,8 @@ function AdminLayout() {
         {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
         <header className="admin-topbar">
           {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
-          <Link className="admin-brand" to="/admin">
-            Online Library <span>Administración</span>
+          <Link className="admin-brand" to={seller ? '/vendedor/productos' : '/admin'}>
+            Online Library <span>{seller ? 'Ventas' : 'Administración'}</span>
           {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
           </Link>
 
@@ -225,22 +225,13 @@ function AdminLayout() {
               aria-label="Navegación de administración"
           >
             {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
-            <NavLink end to="/admin">
-              Resumen
-            {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-            </NavLink>
-
+            {!seller && <NavLink end to="/admin">Resumen</NavLink>}
             {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
-            <NavLink to="/admin/productos">
-              Productos
-            {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-            </NavLink>
-
+            <NavLink to={seller ? '/vendedor/productos' : '/admin/productos'}>Productos</NavLink>
             {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
-            <NavLink to="/admin/usuarios">
-              Usuarios
-            {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-            </NavLink>
+            <NavLink to={seller ? '/vendedor/pedidos' : '/admin/pedidos'}>Órdenes</NavLink>
+            {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
+            {!seller && <NavLink to="/admin/usuarios">Usuarios</NavLink>}
           {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
           </aside>
 

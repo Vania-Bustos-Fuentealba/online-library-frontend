@@ -1,3 +1,5 @@
+> Revisión vigente 27/11/2026: 109 pruebas frontend y 107 backend. Ver [resultados vigentes](../docs/entrega/resultados-pruebas.txt); los recuentos anteriores son históricos.
+
 > Actualización 26/11/2026: 99 pruebas aprobadas; resultados vigentes en [resultados de entrega](../docs/entrega/resultados-pruebas.txt). Los recuentos siguientes pertenecen a la revisión anterior.
 
 # Pruebas de administración

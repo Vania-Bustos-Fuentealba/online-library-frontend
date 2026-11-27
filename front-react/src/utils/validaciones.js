@@ -1,10 +1,10 @@
 // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
 export function validarRun(run) {
   // Nota de lectura: Define limpio, que se utiliza en las instrucciones siguientes.
-  const limpio = run.toUpperCase().replace(/\s/g, '')
+  const limpio = String(run ?? '').toUpperCase()
 
   // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
-  if (!/^\d{7,8}[0-9K]$/.test(limpio)) {
+  if (!/^\d{6,8}[0-9K]$/.test(limpio)) {
     // Nota de lectura: Entrega el resultado de la función o la interfaz que debe renderizar React.
     return false
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.

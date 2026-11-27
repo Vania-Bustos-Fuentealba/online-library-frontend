@@ -9,7 +9,7 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import AdminUserForm from './AdminUserForm'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
-import { mockApi, json, profile } from '../test/apiHelpers'
+import { mockApi, json, profile, profileDetails, fillProfile } from '../test/apiHelpers'
 // Nota de lectura: Define una función corta usada como callback, condición o transformación.
 afterEach(() => vi.unstubAllGlobals())
 // Nota de lectura: Consulta la ruta y el estado que otra pantalla envió al navegar.
@@ -30,8 +30,10 @@ function show(path = '/admin/usuarios/nuevo') {
 }
 // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
 function fill() {
+  // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
+  fillProfile(screen, fireEvent)
   // Nota de lectura: Recorre los elementos indicados y ejecuta el bloque para cada uno.
-  for (const [label, value] of [['Nombre completo', 'Persona real'], ['Correo', 'persona@example.com'], ['Contraseña inicial', 'clave123'], ['Confirmar contraseña', 'clave123']])
+  for (const [label, value] of [['Contraseña inicial', 'clave123'], ['Confirmar contraseña', 'clave123']])
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
     fireEvent.change(screen.getByLabelText(label), { target: { value } })
 // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -47,7 +49,7 @@ describe('Alta y consulta de usuarios', () => {
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
     await userEvent.click(screen.getByRole('button', { name: 'Crear usuario' }))
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(screen.getByRole('alert')).toHaveTextContent('nombre')
+    expect(screen.getByLabelText('Nombre')).toHaveClass('is-invalid')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(fetch).not.toHaveBeenCalled()
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -67,7 +69,7 @@ describe('Alta y consulta de usuarios', () => {
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(fetch.mock.calls[0][0]).toBe('/api/auth/users')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ name: 'Persona real', email: profile.email, password: 'clave123', role: 'CLIENT' })
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ ...profileDetails, name: 'Persona real', email: profile.email, password: 'clave123', role: 'CLIENT' })
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(localStorage.getItem('token')).toBe('sesion-admin')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
@@ -85,11 +87,11 @@ describe('Alta y consulta de usuarios', () => {
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(await screen.findByRole('alert')).toHaveTextContent('ya está registrado')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(screen.getByLabelText('Correo')).toHaveValue(profile.email)
+    expect(screen.getByLabelText('Correo electrónico')).toHaveValue(profile.email)
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
   })
   // Nota de lectura: Define una función corta usada como callback, condición o transformación.
-  it('rechaza contraseñas que exceden el límite de bytes de BCrypt', async () => {
+  it('rechaza contraseñas fuera de la longitud exigida por la ERS', async () => {
     // Nota de lectura: Define fetch, que se utiliza en las instrucciones siguientes.
     const fetch = mockApi(() => json(profile, 201))
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
@@ -101,7 +103,7 @@ describe('Alta y consulta de usuarios', () => {
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
     await userEvent.click(screen.getByRole('button', { name: 'Crear usuario' }))
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(screen.getByRole('alert')).toHaveTextContent('72 bytes')
+    expect(screen.getByRole('alert')).toHaveTextContent('entre 4 y 10')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(fetch).not.toHaveBeenCalled()
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -113,7 +115,7 @@ describe('Alta y consulta de usuarios', () => {
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
     show('/admin/usuarios/42/editar')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(await screen.findByLabelText('Correo')).toHaveValue(profile.email)
+    expect(await screen.findByLabelText('Correo electrónico')).toHaveValue(profile.email)
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(fetch.mock.calls[0][0]).toBe('/api/auth/users/42')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
@@ -139,7 +141,7 @@ describe('Alta y consulta de usuarios', () => {
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(fetch.mock.calls[1][1].method).toBe('PUT')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({ name: profile.name, email: profile.email, role: 'ADMIN' })
+    expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({ ...profileDetails, name: profile.name, email: profile.email, role: 'ADMIN' })
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
   })
   // Nota de lectura: Define una función corta usada como callback, condición o transformación.

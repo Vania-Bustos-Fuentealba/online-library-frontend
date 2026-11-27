@@ -9,7 +9,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import Registro from './Registro'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
-import { mockApi, json, profile } from '../test/apiHelpers'
+import { mockApi, json, profile, profileDetails, fillProfile } from '../test/apiHelpers'
 // Nota de lectura: Define una función corta usada como callback, condición o transformación.
 afterEach(() => vi.unstubAllGlobals())
 // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
@@ -31,7 +31,7 @@ describe('Registro compatible con Auth', () => {
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(fetch).not.toHaveBeenCalled()
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(screen.getByLabelText('Nombre completo')).toHaveClass('is-invalid')
+    expect(screen.getByLabelText('Nombre')).toHaveClass('is-invalid')
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
   })
   // Nota de lectura: Define una función corta usada como callback, condición o transformación.
@@ -40,8 +40,10 @@ describe('Registro compatible con Auth', () => {
     const fetch = mockApi(() => json(profile, 201))
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
     show()
+    // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
+    fillProfile(screen, fireEvent)
     // Nota de lectura: Recorre los elementos indicados y ejecuta el bloque para cada uno.
-    for (const [label, value] of [['Nombre completo', 'Persona real'], ['Correo electrónico', profile.email], ['Contraseña', 'clave123'], ['Confirmar contraseña', 'clave123']])
+    for (const [label, value] of [['Contraseña', 'clave123'], ['Confirmar contraseña', 'clave123']])
       // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
       fireEvent.change(screen.getByLabelText(label), { target: { value } })
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
@@ -51,7 +53,7 @@ describe('Registro compatible con Auth', () => {
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(fetch.mock.calls[0][0]).toBe('/api/auth/register')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ name: 'Persona real', email: profile.email, password: 'clave123' })
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ ...profileDetails, name: 'Persona real', email: profile.email, password: 'clave123' })
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(localStorage.getItem('token')).toBeNull()
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.

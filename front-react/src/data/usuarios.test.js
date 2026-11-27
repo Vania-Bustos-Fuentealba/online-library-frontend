@@ -30,7 +30,7 @@ describe('Sesión JWT, sin autenticación simulada', () => {
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
   })
   // Nota de lectura: Define una función corta usada como callback, condición o transformación.
-  it.each([jwt('ADMIN', { exp: 1 }), jwt('SELLER'), 'invalido', jwt('ADMIN', { sub: '' })])('rechaza token inválido %s', (token) => {
+  it.each([jwt('ADMIN', { exp: 1 }), jwt('DESCONOCIDO'), 'invalido', jwt('ADMIN', { sub: '' })])('rechaza token inválido %s', (token) => {
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
     session()
     // Nota de lectura: Persiste el valor en este navegador; esto no concede permisos en el servidor.

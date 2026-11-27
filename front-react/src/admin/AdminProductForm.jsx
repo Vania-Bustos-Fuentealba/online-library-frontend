@@ -6,9 +6,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { solicitar } from '../services/api'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import { validarLibro } from './adminApi'
+// Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
+import { categorias } from '../data/categorias'
 
 // Nota de lectura: Define emptyProduct, que se utiliza en las instrucciones siguientes.
 const emptyProduct = {
+  // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
+  code: '', category: '', description: '', imageUrl: '', criticalStock: '',
   // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
   name: '',
   // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
@@ -74,6 +78,8 @@ function ProductEditor({ id }) {
         if (active) {
           // Nota de lectura: Actualiza los valores visibles del formulario.
           setForm({
+            // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
+            code: book.code ?? '', category: book.category ?? '', description: book.description ?? '', imageUrl: book.imageUrl ?? '', criticalStock: book.criticalStock == null ? '' : String(book.criticalStock),
             // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
             name: book.title ?? '',
             // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
@@ -161,9 +167,9 @@ function ProductEditor({ id }) {
     const stock = Number(form.stock)
 
     // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
-    if (title.length < 2 || title.length > 150) {
+    if (title.length < 1 || title.length > 100) {
       // Nota de lectura: Actualiza el mensaje de error que verá la persona.
-      setError('El título debe tener entre 2 y 150 caracteres.')
+      setError('El título debe tener entre 1 y 100 caracteres.')
       // Nota de lectura: Aporta el valor return a la declaración o llamada abierta.
       return
     // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -184,12 +190,12 @@ function ProductEditor({ id }) {
         form.price.trim() === '' ||
         // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
         !Number.isFinite(price) ||
-        // Nota de lectura: Asigna o compara el valor de esta parte de la expresión.
-        price <= 0
+        // Nota de lectura: Completa los argumentos o la expresión iniciada en la línea anterior.
+        price < 0
     // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
     ) {
       // Nota de lectura: Actualiza el mensaje de error que verá la persona.
-      setError('El precio debe ser un número mayor que cero.')
+      setError('El precio debe ser un número mayor o igual que cero.')
       // Nota de lectura: Aporta el valor return a la declaración o llamada abierta.
       return
     // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -218,6 +224,18 @@ function ProductEditor({ id }) {
     // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
     }
 
+    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
+    if (form.code.trim().length < 3 || form.code.trim().length > 100) return setError('El código debe tener entre 3 y 100 caracteres.')
+    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
+    if (!categorias.includes(form.category)) return setError('Selecciona una categoría.')
+    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
+    if (form.description.length > 500) return setError('La descripción admite hasta 500 caracteres.')
+    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
+    if (form.imageUrl && (form.imageUrl.length > 2000 || !/^(https?:\/\/[^\s]+|\/(?!\/)[^\s]*)$/.test(form.imageUrl))) return setError('La imagen debe ser una URL http/https o una ruta local.')
+    // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
+    const criticalStock = form.criticalStock.trim() === '' ? null : Number(form.criticalStock)
+    // Nota de lectura: Actualiza el mensaje de error que verá la persona.
+    if (criticalStock !== null && (!Number.isInteger(criticalStock) || criticalStock < 0 || criticalStock > 2147483647)) return setError('El stock crítico debe ser un entero no negativo.')
     // Nota de lectura: Marca la operación en curso para impedir envíos o borrados duplicados.
     setSaving(true)
     // Nota de lectura: Actualiza el mensaje de error que verá la persona.
@@ -239,6 +257,8 @@ function ProductEditor({ id }) {
         method: isEditing ? 'PUT' : 'POST',
         // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
         body: {
+          // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
+          code: form.code.trim(), category: form.category, description: form.description.trim(), imageUrl: form.imageUrl.trim(), criticalStock,
           // Nota de lectura: Aporta el valor title a la declaración o llamada abierta.
           title,
           // Nota de lectura: Aporta el valor author a la declaración o llamada abierta.
@@ -369,6 +389,16 @@ function ProductEditor({ id }) {
 
             {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
             <div className="row g-3">
+              {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
+              <div className="col-md-6"><label className="form-label" htmlFor="code">Código</label><input className="form-control" id="code" name="code" value={form.code} onChange={update} minLength={3} maxLength={100} required /></div>
+              {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
+              <div className="col-md-6"><label className="form-label" htmlFor="category">Categoría</label><select className="form-select" id="category" name="category" value={form.category} onChange={update} required><option value="">Selecciona una categoría</option>{categorias.map(value => <option key={value}>{value}</option>)}</select></div>
+              {/* Nota de lectura: Etiqueta un campo; htmlFor se relaciona con su id. */}
+              <div className="col-12"><label className="form-label" htmlFor="description">Descripción (opcional)</label><textarea className="form-control" id="description" name="description" value={form.description} onChange={update} maxLength={500} /></div>
+              {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
+              <div className="col-md-6"><label className="form-label" htmlFor="imageUrl">Imagen (URL o ruta, opcional)</label><input className="form-control" id="imageUrl" name="imageUrl" value={form.imageUrl} onChange={update} maxLength={2000} /></div>
+              {/* Nota de lectura: Control del formulario enlazado al estado; onChange recoge lo que escribe o selecciona la persona. */}
+              <div className="col-md-6"><label className="form-label" htmlFor="criticalStock">Stock crítico (opcional)</label><input className="form-control" id="criticalStock" name="criticalStock" type="number" min="0" step="1" value={form.criticalStock} onChange={update} /></div>
               {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
               <div className="col-md-6">
                 {/* Nota de lectura: Etiqueta un campo; htmlFor se relaciona con su id. */}
@@ -383,7 +413,7 @@ function ProductEditor({ id }) {
                     id="name"
                     name="name"
                     minLength={2}
-                    maxLength={150}
+                    maxLength={100}
                     value={form.name}
                     onChange={update}
                     required
@@ -427,7 +457,7 @@ function ProductEditor({ id }) {
                     type="number"
                     id="price"
                     name="price"
-                    min="0.01"
+                    min="0"
                     step="any"
                     value={form.price}
                     onChange={update}

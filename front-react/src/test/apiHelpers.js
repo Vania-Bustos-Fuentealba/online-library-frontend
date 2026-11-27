@@ -39,6 +39,20 @@ export function session(role = 'ADMIN', extra = {}) {
 // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
 }
 // Nota de lectura: Asigna o compara el valor de esta parte de la expresión.
-export const book = { id: 7, title: 'Libro real', author: 'Autora real', price: 12.5, stock: 5 }
+export const book = { code: 'LIB-TEST', category: 'Narrativa', description: '', imageUrl: '', criticalStock: 5, id: 7, title: 'Libro real', author: 'Autora real', price: 12.5, stock: 5 }
 // Nota de lectura: Asigna o compara el valor de esta parte de la expresión.
-export const profile = { id: 42, name: 'Persona real', email: 'persona@example.com', role: 'CLIENT', phone: '912345678', address: 'Dirección real 123' }
+export const profileDetails = {"run": "123456785", "lastName": "Prueba", "birthDate": "1998-05-12", "region": "Metropolitana de Santiago", "commune": "Santiago", "address": "Calle de prueba 123"}
+// Nota de lectura: Asigna o compara el valor de esta parte de la expresión.
+export const profile = { ...profileDetails, id: 42, name: 'Persona real', email: 'persona@gmail.com', role: 'CLIENT', phone: '912345678' }
+
+// Completa el perfil exigido por la ERS con datos ficticios y un RUN de prueba válido.
+// Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
+export function fillProfile(screen, fireEvent) {
+  // Nota de lectura: Recorre los elementos indicados y ejecuta el bloque para cada uno.
+  for (const [label, value] of [['RUN (sin puntos ni guion)', profile.run], ['Nombre', profile.name], ['Apellidos', profile.lastName],
+      // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
+      ['Correo electrónico', profile.email], ['Fecha de nacimiento (opcional)', profile.birthDate], ['Región', profile.region], ['Comuna', profile.commune], ['Dirección', profile.address]])
+    // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
+    fireEvent.change(screen.getByLabelText(label), { target: { value } })
+// Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
+}

@@ -10,7 +10,7 @@ import { validarLibro, tieneStockBajo } from './adminApi'
 import { useAdminResource } from './useAdminResource'
 
 // Nota de lectura: Hace disponible el componente principal para importarlo desde otra parte de la aplicación.
-export default function AdminProductDetail() {
+export default function AdminProductDetail({ readOnly = false, base = '/admin' }) {
   // Nota de lectura: Obtiene el identificador definido en la URL.
   const { id } = useParams()
   // Se consulta el identificador de la URL, incluso al recargar directamente la página.
@@ -29,15 +29,15 @@ export default function AdminProductDetail() {
     {/* Nota de lectura: Asigna o compara el valor de esta parte de la expresión. */}
     {book && <div className="admin-form"><dl>
       {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-      <dt>Título</dt><dd>{book.title}</dd><dt>Autor</dt><dd>{book.author}</dd>
+      <dt>Código</dt><dd>{book.code || 'Pendiente de completar'}</dd><dt>Categoría</dt><dd>{book.category || 'Pendiente de completar'}</dd><dt>Descripción</dt><dd>{book.description || 'No indicada'}</dd><dt>Stock crítico</dt><dd>{book.criticalStock ?? 'Sin configurar'}</dd><dt>Título</dt><dd>{book.title}</dd><dt>Autor</dt><dd>{book.author}</dd>
       {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
       <dt>Precio</dt><dd>${book.price.toLocaleString('es-CL')}</dd>
       {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
       <dt>Stock</dt><dd>{book.stock} {tieneStockBajo(book) ? '(Stock bajo)' : ''}</dd>
     {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
-    </dl><Link className="btn btn-primary" to={`/admin/productos/${encodeURIComponent(id)}/editar`}>Editar producto</Link></div>}
+    </dl>{book.imageUrl && <img src={book.imageUrl} alt={`Portada de ${book.title}`} style={{ maxWidth: 180 }} />}{!readOnly && <Link className="btn btn-primary" to={`/admin/productos/${encodeURIComponent(id)}/editar`}>Editar producto</Link>}</div>}
     {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
-    <Link className="btn btn-outline-secondary mt-3" to="/admin/productos">Volver al listado</Link>
+    <Link className="btn btn-outline-secondary mt-3" to={`${base}/productos`}>Volver al listado</Link>
   {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
   </>
 // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.

@@ -1,3 +1,5 @@
+> Revisión vigente 27/11/2026: integración, ERS, Vendedor y renovación JWT; instrucciones y límites en [ENTREGA.md](ENTREGA.md). Pruebas y documentos en [docs/entrega](docs/entrega).
+
 # Online Library Frontend
 
 Aplicación vigente: **front-react**, React + Vite. Las carpetas pages, js y assets conservan la entrega HTML anterior. user-front-react no es la aplicación de esta rama.

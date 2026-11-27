@@ -1,7 +1,7 @@
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import { Link } from 'react-router-dom'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
-import { cargarLibros, cargarUsuarios, STOCK_BAJO, tieneStockBajo } from './adminApi'
+import { cargarLibros, cargarUsuarios, tieneStockBajo } from './adminApi'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import { useAdminResource } from './useAdminResource'
 
@@ -44,7 +44,7 @@ function AdminDashboard() {
     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
     </section>
     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-    <p>Stock bajo: {STOCK_BAJO} unidades o menos, según las existencias del catálogo.</p>
+    <p>Stock bajo: existencias iguales o inferiores al stock crítico configurado en cada libro.</p>
     {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
     <section className="admin-shortcuts">
       {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}

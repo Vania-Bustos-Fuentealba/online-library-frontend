@@ -9,6 +9,8 @@ import { obtenerSesion } from '../data/usuarios'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import { cargarUsuarios } from './adminApi'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
+import { nombresRoles } from '../utils/perfil'
+// Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import { useAdminResource } from './useAdminResource'
 
 // Nota de lectura: Hace disponible el componente principal para importarlo desde otra parte de la aplicación.
@@ -30,7 +32,7 @@ export default function AdminUsers() {
   // Nota de lectura: Conserva los elementos que cumplen la condición; sirve para búsqueda o conteo.
   const filtered = (users ?? []).filter((user) =>
     // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
-    `${user.id} ${user.name} ${user.email} ${user.role}`.toLowerCase().includes(query.trim().toLowerCase()))
+    `${user.id} ${user.run ?? ''} ${user.name} ${user.lastName ?? ''} ${user.email} ${user.role}`.toLowerCase().includes(query.trim().toLowerCase()))
 
   // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
   async function remove(user) {
@@ -93,7 +95,7 @@ export default function AdminUsers() {
         {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}
         <td>{user.id}</td><td><Link to={`/admin/usuarios/${encodeURIComponent(user.id)}`}>{user.name}</Link></td><td>{user.email}</td>
         {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
-        <td>{user.role === 'ADMIN' ? 'Administrador' : 'Cliente'}</td>
+        <td>{nombresRoles[user.role]}</td>
         {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
         <td><div className="d-flex gap-2">
           {/* Nota de lectura: Enlace de React Router hacia la pantalla indicada, sin recargar toda la aplicación. */}

@@ -73,7 +73,7 @@ function leerDatosToken() {
     }
 
     // Nota de lectura: Normaliza texto para comparar y guardar datos sin espacios externos o diferencias de mayúsculas.
-    if (typeof datos.sub !== 'string' || !datos.sub.trim() || !['ADMIN', 'CLIENT'].includes(datos.role)) {
+    if (typeof datos.sub !== 'string' || !datos.sub.trim() || !['ADMIN', 'CLIENT', 'SELLER'].includes(datos.role)) {
       // Nota de lectura: Entrega el resultado de la función o la interfaz que debe renderizar React.
       return null
     // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -112,7 +112,7 @@ export function iniciarSesion(usuario) {
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
     nombre: usuario.nombre ?? '',
     // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-    rol: datosToken.role === 'ADMIN' ? 'admin' : 'cliente',
+    rol: datosToken.role === 'ADMIN' ? 'admin' : datosToken.role === 'SELLER' ? 'vendedor' : 'cliente',
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
   }
 
@@ -170,7 +170,7 @@ export function obtenerSesion() {
       // Nota de lectura: Aporta el valor ...sesion a la declaración o llamada abierta.
       ...sesion,
       // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-      rol: datosToken.role === 'ADMIN' ? 'admin' : 'cliente',
+      rol: datosToken.role === 'ADMIN' ? 'admin' : datosToken.role === 'SELLER' ? 'vendedor' : 'cliente',
       // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
       expiresAt: datosToken.exp * 1000,
     // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.

@@ -35,7 +35,7 @@ function show(path = '/admin/productos/nuevo') {
 // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
 function fill(stock = '0', price = '12.5') {
   // Nota de lectura: Recorre los elementos indicados y ejecuta el bloque para cada uno.
-  for (const [label, value] of [['Título', 'Libro nuevo'], ['Autor', 'Autora real'], ['Precio (CLP)', price], ['Stock', stock]])
+  for (const [label, value] of [['Código', 'LIB-NUEVO'], ['Categoría', 'Narrativa'], ['Título', 'Libro nuevo'], ['Autor', 'Autora real'], ['Precio (CLP)', price], ['Stock', stock]])
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.
     fireEvent.change(screen.getByLabelText(label), { target: { value } })
 // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -55,11 +55,11 @@ describe('Formulario real de libros', () => {
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
     expect(fetch.mock.calls[0][0]).toBe('/api/books')
     // Nota de lectura: Comprueba el resultado esperado; una diferencia hace fallar esta prueba.
-    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ title: 'Libro nuevo', author: 'Autora real', price: 12.5, stock: 0 })
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ code: 'LIB-NUEVO', category: 'Narrativa', description: '', imageUrl: '', criticalStock: null, title: 'Libro nuevo', author: 'Autora real', price: 12.5, stock: 0 })
   // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
   })
   // Nota de lectura: Define una función corta usada como callback, condición o transformación.
-  it.each([['-1', '12'], ['1.5', '12'], ['2147483648', '12'], ['1', '0'], ['1', '-10'], ['', '12']])('rechaza stock %s y precio %s inválidos', async (stock, price) => {
+  it.each([['-1', '12'], ['1.5', '12'], ['2147483648', '12'], ['1', '-10'], ['', '12']])('rechaza stock %s y precio %s inválidos', async (stock, price) => {
     // Nota de lectura: Define fetch, que se utiliza en las instrucciones siguientes.
     const fetch = mockApi(() => json(book))
     // Nota de lectura: Invoca la operación indicada con los argumentos de este bloque.

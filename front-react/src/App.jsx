@@ -40,6 +40,10 @@ import AdminProductDetail from './admin/AdminProductDetail'
 import AdminUsers from './admin/AdminUsers'
 // Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
 import AdminUserForm from './admin/AdminUserForm'
+// Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
+import AdminOrders from './admin/AdminOrders'
+// Nota de lectura: Importa las dependencias indicadas para utilizarlas en este archivo.
+import SessionRenewal from './components/SessionRenewal'
 
 // Nota de lectura: Define una función o método con los parámetros que necesita esta parte del flujo.
 function App() {
@@ -47,6 +51,8 @@ function App() {
   return (
     // Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript.
     <BrowserRouter>
+      {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
+      <SessionRenewal />
       {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
       <Routes>
         {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
@@ -94,6 +100,10 @@ function App() {
           {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
           <Route path="productos/:id/editar" element={<AdminProductForm />} />
           {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
+          <Route path="pedidos" element={<AdminOrders />} />
+          {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
+          <Route path="pedidos/:id" element={<AdminOrders />} />
+          {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
           <Route path="usuarios" element={<AdminUsers />} />
           {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
           <Route path="usuarios/nuevo" element={<AdminUserForm />} />
@@ -101,6 +111,20 @@ function App() {
           <Route path="usuarios/:id" element={<AdminUserForm />} />
           {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
           <Route path="usuarios/:id/editar" element={<AdminUserForm />} />
+        {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
+        </Route>
+        {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
+        <Route path="/vendedor" element={<AdminLayout seller />}>
+          {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
+          <Route index element={<AdminProducts readOnly base="/vendedor" />} />
+          {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
+          <Route path="productos" element={<AdminProducts readOnly base="/vendedor" />} />
+          {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
+          <Route path="productos/:id" element={<AdminProductDetail readOnly base="/vendedor" />} />
+          {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
+          <Route path="pedidos" element={<AdminOrders base="/vendedor" />} />
+          {/* Nota de lectura: Declara qué componente se muestra para esa ruta. */}
+          <Route path="pedidos/:id" element={<AdminOrders base="/vendedor" />} />
         {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}
         </Route>
       {/* Nota de lectura: Estructura visual JSX. Las expresiones entre llaves insertan datos o condiciones de JavaScript. */}

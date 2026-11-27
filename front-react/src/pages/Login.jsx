@@ -110,7 +110,7 @@ function Login() {
       }
 
       // Nota de lectura: Evalúa una condición. El bloque solo continúa por esta rama si se cumple.
-      if (!['ADMIN', 'CLIENT'].includes(datos.role)) {
+      if (!['ADMIN', 'CLIENT', 'SELLER'].includes(datos.role)) {
         // Nota de lectura: Interrumpe la operación y comunica el error al manejador correspondiente.
         throw new Error('El servidor devolvió un rol no reconocido.')
       // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
@@ -121,7 +121,7 @@ function Login() {
         // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
         email: datos.email,
         // Nota de lectura: Establece el valor de la propiedad indicada dentro de un objeto de datos o configuración.
-        rol: datos.role === 'ADMIN' ? 'admin' : 'cliente',
+        rol: datos.role === 'ADMIN' ? 'admin' : datos.role === 'SELLER' ? 'vendedor' : 'cliente',
       // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
       }
 
@@ -133,7 +133,7 @@ function Login() {
       // Nota de lectura: Cambia de pantalla; state transporta un mensaje y replace evita volver al formulario enviado.
       navigate(
           // Nota de lectura: Asigna o compara el valor de esta parte de la expresión.
-          location.state?.volverA === '/checkout' ? '/checkout' : (usuario.rol === 'admin' ? '/admin' : '/productos'),
+          location.state?.volverA === '/checkout' ? '/checkout' : (usuario.rol === 'admin' ? '/admin' : usuario.rol === 'vendedor' ? '/vendedor/productos' : '/productos'),
           // Nota de lectura: Completa los argumentos o la expresión iniciada en la línea anterior.
           { replace: true }
       // Nota de lectura: Cierra o delimita la expresión, bloque o elemento abierto en las líneas anteriores.
