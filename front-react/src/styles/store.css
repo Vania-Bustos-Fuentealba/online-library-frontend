@@ -1,417 +1,749 @@
 /* =========================================================
    VARIABLES Y BASE (misma paleta que la parte de usuario)
    ========================================================= */
+/* Nota de lectura: Aplica las reglas siguientes al selector :root. */
 :root {
+  /* Nota de lectura: Configura --lila-claro con el valor indicado para estos elementos. */
   --lila-claro: #ede7f6;
+  /* Nota de lectura: Configura --lila con el valor indicado para estos elementos. */
   --lila: #d7bde2;
+  /* Nota de lectura: Configura --lila-medio con el valor indicado para estos elementos. */
   --lila-medio: #c39bd3;
+  /* Nota de lectura: Configura --lila-fuerte con el valor indicado para estos elementos. */
   --lila-fuerte: #a569bd;
+  /* Nota de lectura: Configura --morado con el valor indicado para estos elementos. */
   --morado: #4a235a;
+  /* Nota de lectura: Configura --texto con el valor indicado para estos elementos. */
   --texto: #333;
+  /* Nota de lectura: Configura --gris con el valor indicado para estos elementos. */
   --gris: #777;
+  /* Nota de lectura: Configura --borde con el valor indicado para estos elementos. */
   --borde: #e2d9ea;
+  /* Nota de lectura: Configura --rojo con el valor indicado para estos elementos. */
   --rojo: #b3261e;
+  /* Nota de lectura: Configura --verde con el valor indicado para estos elementos. */
   --verde: #1e7d4d;
+  /* Nota de lectura: Configura --blanco con el valor indicado para estos elementos. */
   --blanco: #fff;
+  /* Nota de lectura: Configura --sombra con el valor indicado para estos elementos. */
   --sombra: rgba(74, 35, 90, 0.12);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector a. */
 a {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aporta el valor h1 a la declaración o llamada abierta. */
 h1,
+/* Nota de lectura: Aporta el valor h2 a la declaración o llamada abierta. */
 h2,
+/* Nota de lectura: Aplica las reglas siguientes al selector h3. */
 h3 {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* Botón principal de la tienda: sobrescribe btn-success de Bootstrap con el morado */
+/* Nota de lectura: Aplica las reglas siguientes al selector .btn-success. */
 .btn-success {
+  /* Nota de lectura: Configura --bs-btn-bg con el valor indicado para estos elementos. */
   --bs-btn-bg: var(--morado);
+  /* Nota de lectura: Configura --bs-btn-border-color con el valor indicado para estos elementos. */
   --bs-btn-border-color: var(--morado);
+  /* Nota de lectura: Configura --bs-btn-hover-bg con el valor indicado para estos elementos. */
   --bs-btn-hover-bg: var(--lila-fuerte);
+  /* Nota de lectura: Configura --bs-btn-hover-border-color con el valor indicado para estos elementos. */
   --bs-btn-hover-border-color: var(--lila-fuerte);
+  /* Nota de lectura: Configura --bs-btn-active-bg con el valor indicado para estos elementos. */
   --bs-btn-active-bg: var(--lila-fuerte);
+  /* Nota de lectura: Configura --bs-btn-active-border-color con el valor indicado para estos elementos. */
   --bs-btn-active-border-color: var(--lila-fuerte);
+  /* Nota de lectura: Configura --bs-btn-disabled-bg con el valor indicado para estos elementos. */
   --bs-btn-disabled-bg: var(--lila-medio);
+  /* Nota de lectura: Configura --bs-btn-disabled-border-color con el valor indicado para estos elementos. */
   --bs-btn-disabled-border-color: var(--lila-medio);
+  /* Nota de lectura: Configura --bs-btn-focus-shadow-rgb con el valor indicado para estos elementos. */
   --bs-btn-focus-shadow-rgb: 74, 35, 90;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .form-control con el valor indicado para estos elementos. */
 .form-control:focus,
+/* Nota de lectura: Aplica las reglas siguientes al selector .form-select:focus. */
 .form-select:focus {
+  /* Nota de lectura: Configura border-color con el valor indicado para estos elementos. */
   border-color: var(--lila-fuerte);
+  /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
   box-shadow: 0 0 0 0.2rem rgba(165, 105, 189, 0.25);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* =========================================================
    HEADER Y NAVEGACIÓN
    ========================================================= */
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header. */
 .store-header {
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--lila);
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 14px 0;
+  /* Nota de lectura: Configura border-bottom con el valor indicado para estos elementos. */
   border-bottom: 3px solid var(--lila-medio);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .navbar. */
 .store-header .navbar {
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .navbar-brand. */
 .store-header .navbar-brand {
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: flex;
+  /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
   align-items: center;
+  /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
   gap: 10px;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 22px;
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: bold;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .navbar-brand:hover. */
 .store-header .navbar-brand:hover {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .nav-link. */
 .store-header .nav-link {
+  /* Nota de lectura: Configura position con el valor indicado para estos elementos. */
   position: relative;
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 0 0 3px;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 600;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .store-header .nav-link con el valor indicado para estos elementos. */
 .store-header .nav-link:hover,
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .nav-link.active. */
 .store-header .nav-link.active {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .store-header .nav-link con el valor indicado para estos elementos. */
 .store-header .nav-link:hover::after,
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .nav-link.active::after. */
 .store-header .nav-link.active::after {
+  /* Nota de lectura: Configura content con el valor indicado para estos elementos. */
   content: '';
+  /* Nota de lectura: Configura position con el valor indicado para estos elementos. */
   position: absolute;
+  /* Nota de lectura: Configura left con el valor indicado para estos elementos. */
   left: 0;
+  /* Nota de lectura: Configura right con el valor indicado para estos elementos. */
   right: 0;
+  /* Nota de lectura: Configura bottom con el valor indicado para estos elementos. */
   bottom: 0;
+  /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
   height: 2px;
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .navbar-toggler. */
 .store-header .navbar-toggler {
+  /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
   border: 1px solid var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .store-cart-link. */
 .store-header .store-cart-link {
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--morado);
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 8px;
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 6px 14px;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--blanco);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .store-header .store-cart-link con el valor indicado para estos elementos. */
 .store-header .store-cart-link:hover,
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .store-cart-link.active. */
 .store-header .store-cart-link.active {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--blanco);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-header .store-cart-link::after. */
 .store-header .store-cart-link::after {
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: none;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-cart-badge. */
 .store-cart-badge {
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--lila);
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 700;
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 0.75rem;
+  /* Nota de lectura: Configura min-width con el valor indicado para estos elementos. */
   min-width: 20px;
+  /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
   height: 20px;
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 50%;
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: inline-flex;
+  /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
   align-items: center;
+  /* Nota de lectura: Configura justify-content con el valor indicado para estos elementos. */
   justify-content: center;
+  /* Nota de lectura: Configura margin-left con el valor indicado para estos elementos. */
   margin-left: 6px;
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 0 4px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-main. */
 .store-main {
+  /* Nota de lectura: Configura min-height con el valor indicado para estos elementos. */
   min-height: 70vh;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* =========================================================
    INICIO
    ========================================================= */
+/* Nota de lectura: Aplica las reglas siguientes al selector .hero-tienda. */
 .hero-tienda {
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--morado);
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--blanco);
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 16px;
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 56px 40px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .hero-tienda h1. */
 .hero-tienda h1 {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--blanco);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .hero-tienda .lead. */
 .hero-tienda .lead {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--lila);
+  /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
   max-width: 46ch;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* =========================================================
    TARJETA DE LIBRO
    ========================================================= */
+/* Nota de lectura: Aplica las reglas siguientes al selector .tarjeta-libro. */
 .tarjeta-libro {
+  /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
   border: 1px solid var(--borde);
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 14px;
+  /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
   box-shadow: 0 4px 14px var(--sombra);
+  /* Nota de lectura: Configura overflow con el valor indicado para estos elementos. */
   overflow: hidden;
+  /* Nota de lectura: Configura transition con el valor indicado para estos elementos. */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .tarjeta-libro:hover. */
 .tarjeta-libro:hover {
+  /* Nota de lectura: Configura transform con el valor indicado para estos elementos. */
   transform: translateY(-4px);
+  /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
   box-shadow: 0 8px 20px var(--sombra);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .tarjeta-libro-imagen. */
 .tarjeta-libro-imagen {
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: block;
+  /* Nota de lectura: Configura aspect-ratio con el valor indicado para estos elementos. */
   aspect-ratio: 3 / 4;
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--lila-claro);
+  /* Nota de lectura: Configura overflow con el valor indicado para estos elementos. */
   overflow: hidden;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .tarjeta-libro-imagen img. */
 .tarjeta-libro-imagen img {
+  /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
   width: 100%;
+  /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
   height: 100%;
+  /* Nota de lectura: Configura object-fit con el valor indicado para estos elementos. */
   object-fit: cover;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .tarjeta-libro-categoria. */
 .tarjeta-libro-categoria {
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 0.72rem;
+  /* Nota de lectura: Configura text-transform con el valor indicado para estos elementos. */
   text-transform: uppercase;
+  /* Nota de lectura: Configura letter-spacing con el valor indicado para estos elementos. */
   letter-spacing: 0.05em;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--lila-fuerte);
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 700;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .tarjeta-libro-titulo. */
 .tarjeta-libro-titulo {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+  /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
   text-decoration: none;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .tarjeta-libro-titulo:hover. */
 .tarjeta-libro-titulo:hover {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--lila-fuerte);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .tarjeta-libro-precio. */
 .tarjeta-libro-precio {
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 700;
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 1.1rem;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* =========================================================
    DETALLE DE PRODUCTO
    ========================================================= */
+/* Nota de lectura: Aplica las reglas siguientes al selector .ficha-imagen. */
 .ficha-imagen {
+  /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
   max-width: 340px;
+  /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
   margin: 0 auto;
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 14px;
+  /* Nota de lectura: Configura overflow con el valor indicado para estos elementos. */
   overflow: hidden;
+  /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
   box-shadow: 0 4px 14px var(--sombra);
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--lila-claro);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .ficha-imagen img. */
 .ficha-imagen img {
+  /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
   width: 100%;
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: block;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .ficha-precio. */
 .ficha-precio {
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 2rem;
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 700;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* =========================================================
    CARRITO
    ========================================================= */
+/* Nota de lectura: Aplica las reglas siguientes al selector .item-carrito. */
 .item-carrito {
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: flex;
+  /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
   align-items: center;
+  /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
   gap: 18px;
+  /* Nota de lectura: Configura flex-wrap con el valor indicado para estos elementos. */
   flex-wrap: wrap;
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--blanco);
+  /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
   border: 1px solid var(--borde);
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 12px;
+  /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
   box-shadow: 0 2px 10px var(--sombra);
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 16px;
+  /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
   margin-bottom: 16px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .item-carrito-imagen. */
 .item-carrito-imagen {
+  /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
   width: 72px;
+  /* Nota de lectura: Configura aspect-ratio con el valor indicado para estos elementos. */
   aspect-ratio: 3 / 4;
+  /* Nota de lectura: Configura overflow con el valor indicado para estos elementos. */
   overflow: hidden;
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 8px;
+  /* Nota de lectura: Configura flex-shrink con el valor indicado para estos elementos. */
   flex-shrink: 0;
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--lila-claro);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .item-carrito-imagen img. */
 .item-carrito-imagen img {
+  /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
   width: 100%;
+  /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
   height: 100%;
+  /* Nota de lectura: Configura object-fit con el valor indicado para estos elementos. */
   object-fit: cover;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .item-carrito-info. */
 .item-carrito-info {
+  /* Nota de lectura: Configura flex con el valor indicado para estos elementos. */
   flex: 1;
+  /* Nota de lectura: Configura min-width con el valor indicado para estos elementos. */
   min-width: 140px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .item-carrito-cantidad. */
 .item-carrito-cantidad {
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: flex;
+  /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
   align-items: center;
+  /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
   gap: 10px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .item-carrito-numero. */
 .item-carrito-numero {
+  /* Nota de lectura: Configura min-width con el valor indicado para estos elementos. */
   min-width: 24px;
+  /* Nota de lectura: Configura text-align con el valor indicado para estos elementos. */
   text-align: center;
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 600;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .item-carrito-subtotal. */
 .item-carrito-subtotal {
+  /* Nota de lectura: Configura min-width con el valor indicado para estos elementos. */
   min-width: 90px;
+  /* Nota de lectura: Configura text-align con el valor indicado para estos elementos. */
   text-align: right;
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 700;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .resumen-carrito. */
 .resumen-carrito {
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--blanco);
+  /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
   border: 1px solid var(--borde);
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 14px;
+  /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
   box-shadow: 0 4px 14px var(--sombra);
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 24px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .resumen-fila. */
 .resumen-fila {
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: flex;
+  /* Nota de lectura: Configura justify-content con el valor indicado para estos elementos. */
   justify-content: space-between;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--gris);
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 6px 0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .resumen-total. */
 .resumen-total {
+  /* Nota de lectura: Configura border-top con el valor indicado para estos elementos. */
   border-top: 1px solid var(--borde);
+  /* Nota de lectura: Configura margin-top con el valor indicado para estos elementos. */
   margin-top: 10px;
+  /* Nota de lectura: Configura padding-top con el valor indicado para estos elementos. */
   padding-top: 14px;
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 700;
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 1.15rem;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* =========================================================
    CHECKOUT
    ========================================================= */
+/* Nota de lectura: Aplica las reglas siguientes al selector .checkout-formulario. */
 .checkout-formulario {
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--blanco);
+  /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
   border: 1px solid var(--borde);
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 14px;
+  /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
   box-shadow: 0 4px 14px var(--sombra);
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 28px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación checkout-formulario .form-label, al resultado anterior. */
 .checkout-formulario .form-label,
+/* Nota de lectura: Aplica las reglas siguientes al selector .checkout-formulario legend. */
 .checkout-formulario legend {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--morado);
+  /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
   font-weight: 600;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .checkout-ayuda. */
 .checkout-ayuda {
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 0.8rem;
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--gris);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .checkout-confirmacion. */
 .checkout-confirmacion {
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: #e8f5e9;
+  /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
   border: 1px solid #b7dfbd;
+  /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
   border-radius: 14px;
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 32px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* =========================================================
    FOOTER
    ========================================================= */
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer. */
 .store-footer {
+  /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
   background-color: var(--morado);
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--lila);
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 45px 40px 20px;
+  /* Nota de lectura: Configura margin-top con el valor indicado para estos elementos. */
   margin-top: 50px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer .footer-columnas. */
 .store-footer .footer-columnas {
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: grid;
+  /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
   grid-template-columns: repeat(3, 1fr);
+  /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
   gap: 35px;
+  /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
   max-width: 1100px;
+  /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
   margin: 0 auto 30px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer h4. */
 .store-footer h4 {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--blanco);
+  /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
   margin: 0 0 12px;
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 1.25rem;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer p. */
 .store-footer p {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--lila);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer ul. */
 .store-footer ul {
+  /* Nota de lectura: Configura list-style con el valor indicado para estos elementos. */
   list-style: none;
+  /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
   padding: 0;
+  /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
   margin: 0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer li. */
 .store-footer li {
+  /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
   margin-bottom: 7px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer a. */
 .store-footer a {
+  /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
   color: var(--lila);
+  /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
   text-decoration: none;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer a:hover. */
 .store-footer a:hover {
+  /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
   text-decoration: underline;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer .footer-base. */
 .store-footer .footer-base {
+  /* Nota de lectura: Configura text-align con el valor indicado para estos elementos. */
   text-align: center;
+  /* Nota de lectura: Configura border-top con el valor indicado para estos elementos. */
   border-top: 1px solid var(--lila-fuerte);
+  /* Nota de lectura: Configura padding-top con el valor indicado para estos elementos. */
   padding-top: 18px;
+  /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
   font-size: 14px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .store-footer .footer-base p. */
 .store-footer .footer-base p {
+  /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
   margin: 0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector @media (max-width: 700px). */
 @media (max-width: 700px) {
+  /* Nota de lectura: Aplica las reglas siguientes al selector .store-footer. */
   .store-footer {
+    /* Nota de lectura: Configura padding-left con el valor indicado para estos elementos. */
     padding-left: 18px;
+    /* Nota de lectura: Configura padding-right con el valor indicado para estos elementos. */
     padding-right: 18px;
+  /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
   }
 
+  /* Nota de lectura: Aplica las reglas siguientes al selector .store-footer .footer-columnas. */
   .store-footer .footer-columnas {
+    /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
     grid-template-columns: 1fr;
+    /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
     gap: 25px;
+  /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
   }
 
+  /* Nota de lectura: Aplica las reglas siguientes al selector .hero-tienda. */
   .hero-tienda {
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 36px 22px;
+  /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
   }
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 /* Cupón de descuento */
+/* Nota de lectura: Aplica las reglas siguientes al selector .grupo-cupon. */
 .grupo-cupon {
+  /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
   display: flex;
+  /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
   gap: 8px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
