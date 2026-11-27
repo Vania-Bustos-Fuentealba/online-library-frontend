@@ -2,50 +2,88 @@
    VARIABLES Y BASE
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector :root. */
 :root {
+    /* Nota de lectura: Configura --lila-claro con el valor indicado para estos elementos. */
     --lila-claro: #EDE7F6;
+    /* Nota de lectura: Configura --lila con el valor indicado para estos elementos. */
     --lila: #D7BDE2;
+    /* Nota de lectura: Configura --lila-medio con el valor indicado para estos elementos. */
     --lila-medio: #C39BD3;
+    /* Nota de lectura: Configura --lila-fuerte con el valor indicado para estos elementos. */
     --lila-fuerte: #A569BD;
+    /* Nota de lectura: Configura --morado con el valor indicado para estos elementos. */
     --morado: #4A235A;
+    /* Nota de lectura: Configura --texto con el valor indicado para estos elementos. */
     --texto: #333;
+    /* Nota de lectura: Configura --gris con el valor indicado para estos elementos. */
     --gris: #777;
+    /* Nota de lectura: Configura --borde con el valor indicado para estos elementos. */
     --borde: #e2d9ea;
+    /* Nota de lectura: Configura --rojo con el valor indicado para estos elementos. */
     --rojo: #b3261e;
+    /* Nota de lectura: Configura --verde con el valor indicado para estos elementos. */
     --verde: #1e7d4d;
+    /* Nota de lectura: Configura --blanco con el valor indicado para estos elementos. */
     --blanco: #fff;
+    /* Nota de lectura: Configura --sombra con el valor indicado para estos elementos. */
     --sombra: rgba(74, 35, 90, .12);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 * {
+    /* Nota de lectura: Configura box-sizing con el valor indicado para estos elementos. */
     box-sizing: border-box;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector html. */
 html {
+    /* Nota de lectura: Configura scroll-behavior con el valor indicado para estos elementos. */
     scroll-behavior: smooth;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector body. */
 body {
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0;
+    /* Nota de lectura: Configura font-family con el valor indicado para estos elementos. */
     font-family: "Segoe UI", Arial, sans-serif;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--blanco);
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--texto);
+    /* Nota de lectura: Configura line-height con el valor indicado para estos elementos. */
     line-height: 1.5;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector img. */
 img {
+    /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
     max-width: 100%;
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: block;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector a. */
 a {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aporta el valor h1 a la declaración o llamada abierta. */
 h1,
+/* Nota de lectura: Aporta el valor h2 a la declaración o llamada abierta. */
 h2,
+/* Nota de lectura: Aplica las reglas siguientes al selector h3. */
 h3 {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -54,89 +92,161 @@ h3 {
    Estilo inspirado en el header de tienda.css
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header. */
 .user-header {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--lila);
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+    /* Nota de lectura: Configura min-height con el valor indicado para estos elementos. */
     min-height: 84px;
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 18px 40px;
+    /* Nota de lectura: Configura border-bottom con el valor indicado para estos elementos. */
     border-bottom: 3px solid var(--lila-medio);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar. */
 .user-header .navbar {
+    /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
     width: 100%;
+    /* Nota de lectura: Configura min-height con el valor indicado para estos elementos. */
     min-height: 48px;
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar > .container. */
 .user-header .navbar > .container {
+    /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
     width: 100%;
+    /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
     max-width: none;
+    /* Nota de lectura: Configura padding-left con el valor indicado para estos elementos. */
     padding-left: 0;
+    /* Nota de lectura: Configura padding-right con el valor indicado para estos elementos. */
     padding-right: 0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-brand. */
 .user-header .navbar-brand {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: flex;
+    /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
     align-items: center;
+    /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
     gap: 10px;
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 22px;
+    /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
     font-weight: bold;
+    /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
     text-decoration: none;
+    /* Nota de lectura: Configura white-space con el valor indicado para estos elementos. */
     white-space: nowrap;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-brand span. */
 .user-header .navbar-brand span {
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 22px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-brand:hover. */
 .user-header .navbar-brand:hover {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-collapse. */
 .user-header .navbar-collapse {
+    /* Nota de lectura: Configura justify-content con el valor indicado para estos elementos. */
     justify-content: flex-end;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-nav. */
 .user-header .navbar-nav {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: flex;
+    /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
     align-items: center;
+    /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
     gap: 25px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .nav-link. */
 .user-header .nav-link {
+    /* Nota de lectura: Configura position con el valor indicado para estos elementos. */
     position: relative;
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 0 0 3px;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+    /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
     font-weight: 600;
+    /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
     text-decoration: none;
+    /* Nota de lectura: Configura transition con el valor indicado para estos elementos. */
     transition: color .2s ease;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .user-header .nav-link con el valor indicado para estos elementos. */
 .user-header .nav-link:hover,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .nav-link.active. */
 .user-header .nav-link.active {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .user-header .nav-link con el valor indicado para estos elementos. */
 .user-header .nav-link:hover::after,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .nav-link.active::after. */
 .user-header .nav-link.active::after {
+    /* Nota de lectura: Configura content con el valor indicado para estos elementos. */
     content: "";
+    /* Nota de lectura: Configura position con el valor indicado para estos elementos. */
     position: absolute;
+    /* Nota de lectura: Configura left con el valor indicado para estos elementos. */
     left: 0;
+    /* Nota de lectura: Configura right con el valor indicado para estos elementos. */
     right: 0;
+    /* Nota de lectura: Configura bottom con el valor indicado para estos elementos. */
     bottom: 0;
+    /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
     height: 2px;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-toggler. */
 .user-header .navbar-toggler {
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 1px solid var(--morado);
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 7px 10px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-toggler:focus. */
 .user-header .navbar-toggler:focus {
+    /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
     box-shadow: 0 0 0 .2rem rgba(74, 35, 90, .2);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -144,30 +254,51 @@ h3 {
    CONTENIDO PRINCIPAL
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-main. */
 .user-main {
+    /* Nota de lectura: Configura min-height con el valor indicado para estos elementos. */
     min-height: calc(100vh - 250px);
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-section. */
 .user-section {
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 50px 40px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-section > .container. */
 .user-section > .container {
+    /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
     max-width: 1100px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-section-title. */
 .user-section-title {
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0 0 8px;
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 2.2rem;
+    /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
     font-weight: 700;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-section-description. */
 .user-section-description {
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0 auto 35px;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--gris);
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 1rem;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -175,37 +306,65 @@ h3 {
    HERO / PRESENTACIÓN
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-hero. */
 .user-hero {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: grid;
+    /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
     grid-template-columns: 1fr 1fr;
+    /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
     gap: 40px;
+    /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
     align-items: center;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--lila-claro);
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 60px 40px;
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 25px 40px;
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 14px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación user-hero h1, al resultado anterior. */
 .user-hero h1,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-hero h2. */
 .user-hero h2 {
+    /* Nota de lectura: Configura margin-top con el valor indicado para estos elementos. */
     margin-top: 0;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-hero h1. */
 .user-hero h1 {
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 38px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-hero p. */
 .user-hero p {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: #555;
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 28px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-hero-image img. */
 .user-hero-image img {
+    /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
     width: 100%;
+    /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
     height: 300px;
+    /* Nota de lectura: Configura object-fit con el valor indicado para estos elementos. */
     object-fit: cover;
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 12px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -213,49 +372,88 @@ h3 {
    CARDS GENERALES
    ========================================================= */
 
+/* Nota de lectura: Encadena la operación user-card, al resultado anterior. */
 .user-card,
+/* Nota de lectura: Encadena la operación user-info-card, al resultado anterior. */
 .user-info-card,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-card. */
 .user-feature-card {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--blanco);
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 1px solid var(--borde);
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 12px;
+    /* Nota de lectura: Configura overflow con el valor indicado para estos elementos. */
     overflow: hidden;
+    /* Nota de lectura: Configura transition con el valor indicado para estos elementos. */
     transition: transform .25s ease, box-shadow .25s ease;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .user-card con el valor indicado para estos elementos. */
 .user-card:hover,
+/* Nota de lectura: Configura .user-info-card con el valor indicado para estos elementos. */
 .user-info-card:hover,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-card:hover. */
 .user-feature-card:hover {
+    /* Nota de lectura: Configura transform con el valor indicado para estos elementos. */
     transform: translateY(-5px);
+    /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
     box-shadow: 0 8px 20px rgba(74, 35, 90, .15);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación user-card-body, al resultado anterior. */
 .user-card-body,
+/* Nota de lectura: Encadena la operación user-info-card-body, al resultado anterior. */
 .user-info-card-body,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-card. */
 .user-feature-card {
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 24px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación user-card-title, al resultado anterior. */
 .user-card-title,
+/* Nota de lectura: Encadena la operación user-info-card h2, al resultado anterior. */
 .user-info-card h2,
+/* Nota de lectura: Encadena la operación user-info-card h3, al resultado anterior. */
 .user-info-card h3,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-card h3. */
 .user-feature-card h3 {
+    /* Nota de lectura: Configura margin-top con el valor indicado para estos elementos. */
     margin-top: 0;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación user-card-text, al resultado anterior. */
 .user-card-text,
+/* Nota de lectura: Encadena la operación user-info-card p, al resultado anterior. */
 .user-info-card p,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-card p. */
 .user-feature-card p {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--gris);
+    /* Nota de lectura: Configura line-height con el valor indicado para estos elementos. */
     line-height: 1.7;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-card-image. */
 .user-card-image {
+    /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
     width: 100%;
+    /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
     height: 230px;
+    /* Nota de lectura: Configura object-fit con el valor indicado para estos elementos. */
     object-fit: cover;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--lila-claro);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -263,19 +461,32 @@ h3 {
    GRILLAS
    ========================================================= */
 
+/* Nota de lectura: Encadena la operación user-card-grid, al resultado anterior. */
 .user-card-grid,
+/* Nota de lectura: Encadena la operación user-blog-grid, al resultado anterior. */
 .user-blog-grid,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-grid. */
 .user-feature-grid {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: grid;
+    /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
     gap: 28px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-info-grid. */
 .user-info-grid {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: grid;
+    /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
     gap: 28px;
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 30px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -284,48 +495,87 @@ h3 {
    Inspirados en .boton de tienda.css
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-btn. */
 .user-btn {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: inline-block;
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 12px 24px;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--morado);
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--blanco) !important;
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: none;
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 8px;
+    /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
     text-decoration: none;
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 15px;
+    /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
     font-weight: 500;
+    /* Nota de lectura: Configura cursor con el valor indicado para estos elementos. */
     cursor: pointer;
+    /* Nota de lectura: Configura transition con el valor indicado para estos elementos. */
     transition: background-color .25s ease;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .user-btn con el valor indicado para estos elementos. */
 .user-btn:hover,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-btn:focus. */
 .user-btn:focus {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--lila-fuerte);
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--blanco) !important;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-btn:disabled. */
 .user-btn:disabled {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: #bbb;
+    /* Nota de lectura: Configura cursor con el valor indicado para estos elementos. */
     cursor: not-allowed;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-btn-secondary. */
 .user-btn-secondary {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: inline-block;
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 10px 20px;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: transparent;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado) !important;
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 2px solid var(--morado);
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 8px;
+    /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
     text-decoration: none;
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 15px;
+    /* Nota de lectura: Configura cursor con el valor indicado para estos elementos. */
     cursor: pointer;
+    /* Nota de lectura: Configura transition con el valor indicado para estos elementos. */
     transition: background-color .25s ease, color .25s ease;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .user-btn-secondary con el valor indicado para estos elementos. */
 .user-btn-secondary:hover,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-btn-secondary:focus. */
 .user-btn-secondary:focus {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--morado);
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--blanco) !important;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -333,44 +583,78 @@ h3 {
    FORMULARIOS
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card. */
 .user-form-card {
+    /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
     max-width: 720px;
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0 auto;
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 28px;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--blanco);
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 1px solid var(--borde);
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 12px;
+    /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
     box-shadow: 0 4px 14px var(--sombra);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card .form-label. */
 .user-form-card .form-label {
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 6px;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+    /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
     font-weight: 600;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación user-form-card .form-control, al resultado anterior. */
 .user-form-card .form-control,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card .form-select. */
 .user-form-card .form-select {
+    /* Nota de lectura: Configura min-height con el valor indicado para estos elementos. */
     min-height: 44px;
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 1px solid var(--borde);
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 8px;
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 15px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card textarea.form-control. */
 .user-form-card textarea.form-control {
+    /* Nota de lectura: Configura min-height con el valor indicado para estos elementos. */
     min-height: 130px;
+    /* Nota de lectura: Configura resize con el valor indicado para estos elementos. */
     resize: vertical;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Configura .user-form-card .form-control con el valor indicado para estos elementos. */
 .user-form-card .form-control:focus,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card .form-select:focus. */
 .user-form-card .form-select:focus {
+    /* Nota de lectura: Configura border-color con el valor indicado para estos elementos. */
     border-color: var(--lila-medio);
+    /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
     box-shadow: 0 0 0 .2rem rgba(195, 155, 211, .25);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card .form-text. */
 .user-form-card .form-text {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--gris);
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 13px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -378,19 +662,31 @@ h3 {
    VALIDACIONES
    ========================================================= */
 
+/* Nota de lectura: Encadena la operación user-form-card .form-control.is-valid, al resultado anterior. */
 .user-form-card .form-control.is-valid,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card .form-select.is-valid. */
 .user-form-card .form-select.is-valid {
+    /* Nota de lectura: Configura border-color con el valor indicado para estos elementos. */
     border-color: var(--verde);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación user-form-card .form-control.is-invalid, al resultado anterior. */
 .user-form-card .form-control.is-invalid,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card .form-select.is-invalid. */
 .user-form-card .form-select.is-invalid {
+    /* Nota de lectura: Configura border-color con el valor indicado para estos elementos. */
     border-color: var(--rojo);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card .invalid-feedback. */
 .user-form-card .invalid-feedback {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--rojo);
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 13px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -398,35 +694,61 @@ h3 {
    BLOG
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-grid. */
 .user-blog-grid {
+    /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-card. */
 .user-blog-card {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: flex;
+    /* Nota de lectura: Configura flex-direction con el valor indicado para estos elementos. */
     flex-direction: column;
+    /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
     height: 100%;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--blanco);
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 1px solid var(--borde);
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 12px;
+    /* Nota de lectura: Configura overflow con el valor indicado para estos elementos. */
     overflow: hidden;
+    /* Nota de lectura: Configura transition con el valor indicado para estos elementos. */
     transition: transform .25s ease, box-shadow .25s ease;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-card:hover. */
 .user-blog-card:hover {
+    /* Nota de lectura: Configura transform con el valor indicado para estos elementos. */
     transform: translateY(-5px);
+    /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
     box-shadow: 0 8px 20px rgba(74, 35, 90, .15);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-card .user-card-body. */
 .user-blog-card .user-card-body {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: flex;
+    /* Nota de lectura: Configura flex-direction con el valor indicado para estos elementos. */
     flex-direction: column;
+    /* Nota de lectura: Configura flex con el valor indicado para estos elementos. */
     flex: 1;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-card .user-btn. */
 .user-blog-card .user-btn {
+    /* Nota de lectura: Configura margin-top con el valor indicado para estos elementos. */
     margin-top: auto;
+    /* Nota de lectura: Configura align-self con el valor indicado para estos elementos. */
     align-self: flex-start;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -434,45 +756,79 @@ h3 {
    DETALLE BLOG
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-detail. */
 .user-blog-detail {
+    /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
     max-width: 900px;
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0 auto;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-detail-card. */
 .user-blog-detail-card {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--blanco);
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 1px solid var(--borde);
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 12px;
+    /* Nota de lectura: Configura overflow con el valor indicado para estos elementos. */
     overflow: hidden;
+    /* Nota de lectura: Configura box-shadow con el valor indicado para estos elementos. */
     box-shadow: 0 4px 14px var(--sombra);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-detail-image. */
 .user-blog-detail-image {
+    /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
     width: 100%;
+    /* Nota de lectura: Configura max-height con el valor indicado para estos elementos. */
     max-height: 420px;
+    /* Nota de lectura: Configura object-fit con el valor indicado para estos elementos. */
     object-fit: cover;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-detail-body. */
 .user-blog-detail-body {
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 32px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-detail-body h1. */
 .user-blog-detail-body h1 {
+    /* Nota de lectura: Configura margin-top con el valor indicado para estos elementos. */
     margin-top: 0;
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 12px;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-detail-body p. */
 .user-blog-detail-body p {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--gris);
+    /* Nota de lectura: Configura line-height con el valor indicado para estos elementos. */
     line-height: 1.8;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-detail-meta. */
 .user-blog-detail-meta {
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 25px;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--lila-fuerte);
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 14px;
+    /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
     font-weight: 600;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -480,40 +836,70 @@ h3 {
    NOSOTROS
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-info-card. */
 .user-info-card {
+    /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
     height: 100%;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-info-card-body. */
 .user-info-card-body {
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 28px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación user-info-card-body p, al resultado anterior. */
 .user-info-card-body p,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-card p. */
 .user-feature-card p {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--gris);
+    /* Nota de lectura: Configura line-height con el valor indicado para estos elementos. */
     line-height: 1.7;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-card. */
 .user-feature-card {
+    /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
     height: 100%;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-card h3. */
 .user-feature-card h3 {
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 12px;
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 1.3rem;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-icon. */
 .user-feature-icon {
+    /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
     width: 52px;
+    /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
     height: 52px;
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 16px;
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: flex;
+    /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
     align-items: center;
+    /* Nota de lectura: Configura justify-content con el valor indicado para estos elementos. */
     justify-content: center;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--lila-claro);
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 50%;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 24px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -521,38 +907,66 @@ h3 {
    CONTACTO
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-contact-grid. */
 .user-contact-grid {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: grid;
+    /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
     grid-template-columns: 1fr 1.4fr;
+    /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
     gap: 35px;
+    /* Nota de lectura: Configura align-items con el valor indicado para estos elementos. */
     align-items: start;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-contact-info. */
 .user-contact-info {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--lila-claro);
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 12px;
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 28px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Encadena la operación user-contact-info h2, al resultado anterior. */
 .user-contact-info h2,
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-contact-info h3. */
 .user-contact-info h3 {
+    /* Nota de lectura: Configura margin-top con el valor indicado para estos elementos. */
     margin-top: 0;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-contact-info p. */
 .user-contact-info p {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--gris);
+    /* Nota de lectura: Configura line-height con el valor indicado para estos elementos. */
     line-height: 1.7;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-contact-item. */
 .user-contact-item {
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 18px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-contact-item strong. */
 .user-contact-item strong {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: block;
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 4px;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -560,13 +974,20 @@ h3 {
    ENLACES DENTRO DEL CONTENIDO
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-main a:not(.user-btn):not(.user-btn-secondary). */
 .user-main a:not(.user-btn):not(.user-btn-secondary) {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--morado);
+    /* Nota de lectura: Configura font-weight con el valor indicado para estos elementos. */
     font-weight: 600;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-main a:not(.user-btn):not(.user-btn-secondary):hover. */
 .user-main a:not(.user-btn):not(.user-btn-secondary):hover {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--lila-fuerte);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -574,50 +995,88 @@ h3 {
    FOOTER
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-footer. */
 .user-footer {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--morado);
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--lila);
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 45px 40px 20px;
+    /* Nota de lectura: Configura margin-top con el valor indicado para estos elementos. */
     margin-top: 50px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-footer .footer-columnas. */
 .user-footer .footer-columnas {
+    /* Nota de lectura: Configura display con el valor indicado para estos elementos. */
     display: grid;
+    /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
     grid-template-columns: repeat(3, 1fr);
+    /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
     gap: 35px;
+    /* Nota de lectura: Configura max-width con el valor indicado para estos elementos. */
     max-width: 1100px;
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0 auto 30px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-footer h4. */
 .user-footer h4 {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--blanco);
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0 0 12px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-footer ul. */
 .user-footer ul {
+    /* Nota de lectura: Configura list-style con el valor indicado para estos elementos. */
     list-style: none;
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 0;
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-footer li. */
 .user-footer li {
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 7px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-footer a. */
 .user-footer a {
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--lila);
+    /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
     text-decoration: none;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-footer a:hover. */
 .user-footer a:hover {
+    /* Nota de lectura: Configura text-decoration con el valor indicado para estos elementos. */
     text-decoration: underline;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-footer .footer-base. */
 .user-footer .footer-base {
+    /* Nota de lectura: Configura text-align con el valor indicado para estos elementos. */
     text-align: center;
+    /* Nota de lectura: Configura border-top con el valor indicado para estos elementos. */
     border-top: 1px solid var(--lila-fuerte);
+    /* Nota de lectura: Configura padding-top con el valor indicado para estos elementos. */
     padding-top: 18px;
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 14px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -625,18 +1084,28 @@ h3 {
    FOOTER RESPONSIVE
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector @media (max-width: 700px). */
 @media (max-width: 700px) {
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-footer. */
     .user-footer {
+        /* Nota de lectura: Configura padding-left con el valor indicado para estos elementos. */
         padding-left: 18px;
+        /* Nota de lectura: Configura padding-right con el valor indicado para estos elementos. */
         padding-right: 18px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-footer .footer-columnas. */
     .user-footer .footer-columnas {
+        /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
         grid-template-columns: 1fr;
+        /* Nota de lectura: Configura gap con el valor indicado para estos elementos. */
         gap: 25px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -644,22 +1113,37 @@ h3 {
    MENSAJES
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-alert. */
 .user-alert {
+    /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
     padding: 14px 20px;
+    /* Nota de lectura: Configura margin-bottom con el valor indicado para estos elementos. */
     margin-bottom: 20px;
+    /* Nota de lectura: Configura border-radius con el valor indicado para estos elementos. */
     border-radius: 8px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-alert-success. */
 .user-alert-success {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: #e8f5e9;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--verde);
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 1px solid #b7dfbd;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-alert-error. */
 .user-alert-error {
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: #fdecea;
+    /* Nota de lectura: Configura color con el valor indicado para estos elementos. */
     color: var(--rojo);
+    /* Nota de lectura: Configura border con el valor indicado para estos elementos. */
     border: 1px solid #efb4b0;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -667,11 +1151,17 @@ h3 {
    SEPARADORES
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector .user-divider. */
 .user-divider {
+    /* Nota de lectura: Configura width con el valor indicado para estos elementos. */
     width: 100%;
+    /* Nota de lectura: Configura height con el valor indicado para estos elementos. */
     height: 1px;
+    /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
     margin: 30px 0;
+    /* Nota de lectura: Configura background-color con el valor indicado para estos elementos. */
     background-color: var(--borde);
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
@@ -679,88 +1169,153 @@ h3 {
    RESPONSIVE
    ========================================================= */
 
+/* Nota de lectura: Aplica las reglas siguientes al selector @media (max-width: 900px). */
 @media (max-width: 900px) {
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-header. */
     .user-header {
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 18px 40px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-brand. */
     .user-header .navbar-brand {
+        /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
         font-size: 22px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-header .nav-link. */
     .user-header .nav-link {
+    /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
     font-size: 16px;
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
+    /* Nota de lectura: Configura .user-header .nav-link con el valor indicado para estos elementos. */
     .user-header .nav-link:hover::after,
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-header .nav-link.active::after. */
     .user-header .nav-link.active::after {
+        /* Nota de lectura: Configura bottom con el valor indicado para estos elementos. */
         bottom: 3px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Encadena la operación user-hero, al resultado anterior. */
     .user-hero,
+    /* Nota de lectura: Encadena la operación user-contact-grid, al resultado anterior. */
     .user-contact-grid,
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-info-grid. */
     .user-info-grid {
+        /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
         grid-template-columns: 1fr;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-section. */
     .user-section {
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 40px 24px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
 
 
+/* Nota de lectura: Aplica las reglas siguientes al selector @media (max-width: 600px). */
 @media (max-width: 600px) {
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-header. */
     .user-header {
+        /* Nota de lectura: Configura min-height con el valor indicado para estos elementos. */
         min-height: auto;
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 16px 18px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-brand. */
     .user-header .navbar-brand {
+        /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
         font-size: 20px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-header .navbar-brand span. */
     .user-header .navbar-brand span {
+        /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
         font-size: 20px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-section. */
     .user-section {
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 35px 18px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-section-title. */
     .user-section-title {
+        /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
         font-size: 1.8rem;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-hero. */
     .user-hero {
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 35px 20px;
+        /* Nota de lectura: Configura margin con el valor indicado para estos elementos. */
         margin: 15px 18px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-hero h1. */
     .user-hero h1 {
+        /* Nota de lectura: Configura font-size con el valor indicado para estos elementos. */
         font-size: 30px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-form-card. */
     .user-form-card {
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 22px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Encadena la operación user-blog-grid, al resultado anterior. */
     .user-blog-grid,
+    /* Nota de lectura: Encadena la operación user-card-grid, al resultado anterior. */
     .user-card-grid,
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-feature-grid. */
     .user-feature-grid {
+        /* Nota de lectura: Configura grid-template-columns con el valor indicado para estos elementos. */
         grid-template-columns: 1fr;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-blog-detail-body. */
     .user-blog-detail-body {
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 24px 20px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-contact-info. */
     .user-contact-info {
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 22px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
 
+    /* Nota de lectura: Aplica las reglas siguientes al selector .user-footer. */
     .user-footer {
+        /* Nota de lectura: Configura padding con el valor indicado para estos elementos. */
         padding: 35px 18px 20px;
+    /* Nota de lectura: Cierra este conjunto de reglas de estilo. */
     }
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }

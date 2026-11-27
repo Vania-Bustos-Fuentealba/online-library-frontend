@@ -1,37 +1,74 @@
+/* Nota de lectura: Configura .admin-shell { min-height con el valor indicado para estos elementos. */
 .admin-shell { min-height: 100vh; background: #f4f6f8; color: #243238; }
+/* Nota de lectura: Configura .admin-topbar { min-height con el valor indicado para estos elementos. */
 .admin-topbar { min-height: 68px; padding: 12px clamp(16px, 4vw, 40px); display: flex; justify-content: space-between; align-items: center; gap: 16px; background: #2f3e46; color: #fff; }
+/* Nota de lectura: Configura .admin-brand { color con el valor indicado para estos elementos. */
 .admin-brand { color: inherit; text-decoration: none; font-size: 1.2rem; font-weight: 700; }
+/* Nota de lectura: Configura .admin-brand span { margin-left con el valor indicado para estos elementos. */
 .admin-brand span { margin-left: 10px; font-size: .9rem; font-weight: 400; opacity: .8; }
+/* Nota de lectura: Configura .admin-frame { display con el valor indicado para estos elementos. */
 .admin-frame { display: flex; min-height: calc(100vh - 68px); }
+/* Nota de lectura: Configura .admin-nav { width con el valor indicado para estos elementos. */
 .admin-nav { width: 230px; flex: 0 0 230px; padding: 24px 14px; display: flex; flex-direction: column; gap: 8px; background: #354f52; }
+/* Nota de lectura: Configura .admin-nav a { padding con el valor indicado para estos elementos. */
 .admin-nav a { padding: 11px 14px; border-radius: 8px; color: #fff; text-decoration: none; font-weight: 600; }
+/* Nota de lectura: Configura .admin-nav a con el valor indicado para estos elementos. */
 .admin-nav a:hover, .admin-nav a.active { background: #52796f; color: #fff; }
+/* Nota de lectura: Configura .admin-main { min-width con el valor indicado para estos elementos. */
 .admin-main { min-width: 0; flex: 1; padding: clamp(20px, 4vw, 42px); }
+/* Nota de lectura: Configura .admin-heading { margin-bottom con el valor indicado para estos elementos. */
 .admin-heading { margin-bottom: 24px; }
+/* Nota de lectura: Configura .admin-heading h1 { margin con el valor indicado para estos elementos. */
 .admin-heading h1 { margin: 0 0 6px; font-size: clamp(1.7rem, 3vw, 2.25rem); font-weight: 700; }
+/* Nota de lectura: Configura .admin-heading p { margin con el valor indicado para estos elementos. */
 .admin-heading p { margin: 0; color: #66747b; }
+/* Nota de lectura: Configura .admin-heading .admin-eyebrow { margin-bottom con el valor indicado para estos elementos. */
 .admin-heading .admin-eyebrow { margin-bottom: 4px; color: #52796f; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+/* Nota de lectura: Configura .admin-heading-row { display con el valor indicado para estos elementos. */
 .admin-heading-row { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+/* Nota de lectura: Configura .admin-stats, .admin-shortcuts { display con el valor indicado para estos elementos. */
 .admin-stats, .admin-shortcuts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+/* Nota de lectura: Configura .admin-stats article, .admin-shortcuts article, .admin-form, .admin-table-wrap { padding con el valor indicado para estos elementos. */
 .admin-stats article, .admin-shortcuts article, .admin-form, .admin-table-wrap { padding: 22px; border: 1px solid #e2e8eb; border-radius: 12px; background: #fff; box-shadow: 0 4px 14px rgba(34, 56, 62, .05); }
+/* Nota de lectura: Configura .admin-stats article { display con el valor indicado para estos elementos. */
 .admin-stats article { display: grid; gap: 8px; }
+/* Nota de lectura: Configura .admin-stats span { color con el valor indicado para estos elementos. */
 .admin-stats span { color: #65747b; }
+/* Nota de lectura: Configura .admin-stats strong { font-size con el valor indicado para estos elementos. */
 .admin-stats strong { font-size: 2rem; }
+/* Nota de lectura: Configura .admin-shortcuts { grid-template-columns con el valor indicado para estos elementos. */
 .admin-shortcuts { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 22px; }
+/* Nota de lectura: Configura .admin-shortcuts h2 { font-size con el valor indicado para estos elementos. */
 .admin-shortcuts h2 { font-size: 1.2rem; }
+/* Nota de lectura: Configura .admin-shortcuts p { min-height con el valor indicado para estos elementos. */
 .admin-shortcuts p { min-height: 48px; color: #65747b; }
+/* Nota de lectura: Configura .admin-toolbar { max-width con el valor indicado para estos elementos. */
 .admin-toolbar { max-width: 520px; margin-bottom: 16px; }
+/* Nota de lectura: Configura .admin-table-wrap { overflow-x con el valor indicado para estos elementos. */
 .admin-table-wrap { overflow-x: auto; padding: 0; }
+/* Nota de lectura: Configura .admin-table-wrap table { min-width con el valor indicado para estos elementos. */
 .admin-table-wrap table { min-width: 700px; }
+/* Nota de lectura: Configura .admin-table-wrap th { white-space con el valor indicado para estos elementos. */
 .admin-table-wrap th { white-space: nowrap; background: #f8fafb; }
+/* Nota de lectura: Configura .admin-form { max-width con el valor indicado para estos elementos. */
 .admin-form { max-width: 900px; }
+/* Nota de lectura: Configura .admin-form .form-label { font-weight con el valor indicado para estos elementos. */
 .admin-form .form-label { font-weight: 600; }
+/* Nota de lectura: Aplica las reglas siguientes al selector @media (max-width: 760px). */
 @media (max-width: 760px) {
+  /* Nota de lectura: Configura .admin-frame { display con el valor indicado para estos elementos. */
   .admin-frame { display: block; }
+  /* Nota de lectura: Configura .admin-nav { width con el valor indicado para estos elementos. */
   .admin-nav { width: 100%; padding: 10px 14px; flex-direction: row; overflow-x: auto; }
+  /* Nota de lectura: Configura .admin-nav a { flex con el valor indicado para estos elementos. */
   .admin-nav a { flex: 0 0 auto; }
+  /* Nota de lectura: Configura .admin-stats { grid-template-columns con el valor indicado para estos elementos. */
   .admin-stats { grid-template-columns: 1fr; gap: 10px; }
+  /* Nota de lectura: Configura .admin-stats article { grid-template-columns con el valor indicado para estos elementos. */
   .admin-stats article { grid-template-columns: 1fr auto; align-items: center; }
+  /* Nota de lectura: Configura .admin-stats strong { font-size con el valor indicado para estos elementos. */
   .admin-stats strong { font-size: 1.5rem; }
+  /* Nota de lectura: Configura .admin-shortcuts { grid-template-columns con el valor indicado para estos elementos. */
   .admin-shortcuts { grid-template-columns: 1fr; }
+/* Nota de lectura: Cierra este conjunto de reglas de estilo. */
 }
